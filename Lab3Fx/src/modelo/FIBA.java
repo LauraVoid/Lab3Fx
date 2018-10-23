@@ -23,6 +23,7 @@ public class FIBA {
 	private IAVLTree<Double, Integer> reboundsAVLTree;
 	private IAVLTree<Double, Integer> stealAVLTree;
 	private IRBTree<Double,Integer> locksRBTree;
+	private IRBTree<Double,Integer> pointsRBTree;
 	
 	private FileReader fr;
 	private BufferedReader br;
@@ -35,6 +36,7 @@ public class FIBA {
 		reboundsAVLTree = new AVLTree<Double, Integer>(); 	
 		stealAVLTree = new AVLTree<Double, Integer>();
 		locksRBTree= new RBTree<Double,Integer>();
+		pointsRBTree= new RBTree<Double,Integer>();
 		
 //		deStealTree();
 //		deReboundsTree();
@@ -43,26 +45,52 @@ public class FIBA {
 	}
 	
 
-	public IRBTree<Double, Integer> getRBTree() {
+	public IRBTree<Double, Integer> getRBLocksTree() {
 		return locksRBTree;
 	}
 
 
-	public void setRBTree(IRBTree<Double, Integer> rbTree) {
-		this.locksRBTree = rbTree;
+	public void setRBLocksTree(IRBTree<Double, Integer> locksRBTree) {
+		this.locksRBTree = locksRBTree;
 	}
 
 
-	public void insert(Double key, Integer value) {
+	public void insertLocks(Double key, Integer value) {
 		locksRBTree.RBInsert(key, value);
 	}
-	public Integer search(Double key) {
+	public Integer searchLocks(Double key) {
 		return locksRBTree.RBSearch(locksRBTree.getRoot(),key).getValue();
 	}
 	
-	public void delete(Double key) {
+	
+	
+	public void deleteLocks(Double key) {
 		locksRBTree.RBDelete(key);
 	}
+	
+	public IRBTree<Double, Integer> getRBPointsTree() {
+		return pointsRBTree;
+	}
+
+
+	public void setRBPointsTree(IRBTree<Double, Integer> pointsRBTree) {
+		this.pointsRBTree = pointsRBTree;
+	}
+
+
+	public void insertPoints(Double key, Integer value) {
+		pointsRBTree.RBInsert(key, value);
+	}
+	public Integer searchPoints(Double key) {
+		return pointsRBTree.RBSearch(pointsRBTree.getRoot(),key).getValue();
+	}
+	
+	
+	
+	public void deletePoints(Double key) {
+		pointsRBTree.RBDelete(key);
+	}
+	
 	
 
 	public Player searchReboundsAVL(Double key) throws IOException {
@@ -76,6 +104,21 @@ public class FIBA {
 
 		System.out.println(key+ " Valor a buscar");
 		Integer num = stealAVLTree.search(key, stealAVLTree.getRoot()).getValue();
+		System.out.println(num +" NUM");
+		return searchTxtPlayer(num + "");
+	}
+	
+	public Player searchLocksRB(Double key) throws IOException {
+
+		Integer num = locksRBTree.RBSearch( locksRBTree.getRoot(),key).getValue();
+
+		return searchTxtPlayer(num + "");
+	}
+
+	public Player searchPointsRB(Double key) throws IOException {
+
+		System.out.println(key+ " Valor a buscar");
+		Integer num = pointsRBTree.RBSearch(pointsRBTree.getRoot(),key).getValue();
 		System.out.println(num +" NUM");
 		return searchTxtPlayer(num + "");
 	}
@@ -103,6 +146,7 @@ public class FIBA {
 		int index = reboundsAVLTree.getAmountNode() + 1;
 		reboundsAVLTree.insert(newPlayer.getRebounds(), index);
 		stealAVLTree.insert(newPlayer.getSteal(), index);
+		
 		writeNewPlayer(newPlayer, index);
 
 	}

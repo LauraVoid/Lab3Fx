@@ -40,41 +40,41 @@ class FIBATest {
 		player4=4;
 		player5=5;
 		player6=6;
-		fiba.insert(100.0, player1);
-		fiba.insert(92.0, player2);
-		fiba.insert(93.0, player3);
-		fiba.insert(105.0, player4);
-		fiba.insert(102.0, player5);
-		fiba.insert(91.0, player6);
+		fiba.insertPoints(100.0, player1);
+		fiba.insertPoints(92.0, player2);
+		fiba.insertPoints(93.0, player3);
+		fiba.insertPoints(105.0, player4);
+		fiba.insertPoints(102.0, player5);
+		fiba.insertPoints(91.0, player6);
 	
 	}
 	@Test
 	public void insertTest() throws ClassNotFoundException, IOException {
 		setUp1();
-		fiba.insert(100.0, player1);
-		fiba.insert(92.0, player2);
-		fiba.insert(93.0, player3);
-		fiba.insert(105.0, player4);
-		fiba.insert(102.0, player5);
-		fiba.insert(91.0, player6);
-		assertEquals(fiba.getRBTree().getRoot().getValue(),player3);
-		assertEquals(fiba.getRBTree().getRoot().getLeft().getValue(),player2);
-		assertEquals(fiba.getRBTree().getRoot().getRight().getColor(),RBNode.BLACK);
+		fiba.insertPoints(100.0, player1);
+		fiba.insertPoints(92.0, player2);
+		fiba.insertPoints(93.0, player3);
+		fiba.insertPoints(105.0, player4);
+		fiba.insertPoints(102.0, player5);
+		fiba.insertPoints(91.0, player6);
+		assertEquals(fiba.getRBPointsTree().getRoot().getValue(),player3);
+		assertEquals(fiba.getRBPointsTree().getRoot().getLeft().getValue(),player2);
+		assertEquals(fiba.getRBPointsTree().getRoot().getRight().getColor(),RBNode.BLACK);
 	}
 	
 	@Test
 	public void deleteTest() throws ClassNotFoundException, IOException {
 		setUp2();
 	
-		fiba.delete(102.0);
-		assertEquals(fiba.getRBTree().getRoot().getRight().getValue(),player1);
+		fiba.deletePoints(102.0);
+		assertEquals(fiba.getRBPointsTree().getRoot().getRight().getValue(),player1);
 	}
 	
 	@Test
 	public void searchTest() throws ClassNotFoundException, IOException {
 		setUp2();
-		assertEquals(fiba.getRBTree().getRoot().getRight().getValue(),fiba.search(102.0));
-		assertEquals(fiba.getRBTree().getRoot().getValue(),fiba.search(93.0));
+		assertEquals(fiba.getRBPointsTree().getRoot().getRight().getValue(),fiba.searchPoints(102.0));
+		assertEquals(fiba.getRBPointsTree().getRoot().getValue(),fiba.searchPoints(93.0));
 	}
 
 }
