@@ -107,9 +107,10 @@ public class RBTree<K,V> implements IRBTree<K,V> {
 	}
 	public RBNode<K,V> RBSearch(RBNode<K,V> searched, K k) {
 		
-		if((searched==nil)||(k==searched.getKey())){
+		if((searched==nil)||((double)k==(double)searched.getKey())){
+		
 			return searched;
-		}if(k.hashCode()<searched.getKey().hashCode()) {
+		}if((double)k<(double)searched.getKey()) {
 			return RBSearch(searched.getLeft(),k);
 		}
 		else return RBSearch(searched.getRight(),k);
@@ -347,36 +348,36 @@ public class RBTree<K,V> implements IRBTree<K,V> {
     	}
     }
 	public static void main(String[] args) {
-		RBTree<Integer,String> rb = new RBTree<Integer,String>();
-//		rb.RBInsert(8, "player1");
-//		rb.RBInsert(7, "player2");
-//		rb.RBInsert(12, "player3");
-//		rb.RBInsert(6, "player4");
-//		rb.RBInsert(7, "player5");
-//		rb.RBInsert(10, "player6");
-//		rb.RBInsert(14, "player7");
-//		rb.RBInsert(13, "player8");
-//		rb.RBInsert(15, "player9");
-		rb.RBInsert(100, "player1");
-		rb.RBInsert(92, "player2");
-		rb.RBInsert(93, "player3");
-		rb.RBInsert(105, "player4");
-		rb.RBInsert(102, "player5");
-		rb.RBInsert(91, "player6");
-		
-		rb.RBDelete(102);
+		RBTree<Double,String> rb = new RBTree<Double,String>();
+		rb.RBInsert(8.0, "player1");
+		rb.RBInsert(7.0, "player2");
+		rb.RBInsert(12.0, "player3");
+		rb.RBInsert(6.0, "player4");
+		rb.RBInsert(7.5, "player5");
+		rb.RBInsert(10.0, "player6");
+		rb.RBInsert(14.0, "player7");
+		rb.RBInsert(13.0, "player8");
+		rb.RBInsert(15.0, "player9");
+//		rb.RBInsert(100.0, "player1");
+//		rb.RBInsert(92.0, "player2");
+//		rb.RBInsert(93.0, "player3");
+//		rb.RBInsert(105.0, "player4");
+//		rb.RBInsert(102.0, "player5");
+//		rb.RBInsert(91.0, "player6");
+//		
+		//rb.RBDelete(102.0);
 		//rb.preorder(rb.getRoot());
-	  //  System.out.println(rb.RBSearch(rb.getRoot(),10).getValue());
+	   System.out.println(rb.RBSearch(rb.getRoot(),13.0).getValue());
 		System.out.println(rb.getRoot().getKey());
 		System.out.println(rb.getRoot().getLeft().getKey());
-		System.out.println(rb.getRoot().getRight().getValue());
-//		System.out.println(rb.getRoot().getLeft().getLeft().getKey());
-//		System.out.println(rb.getRoot().getLeft().getRight().getKey());
-//		System.out.println(rb.getRoot().getRight().getLeft().getKey());
-//		System.out.println(rb.getRoot().getRight().getLeft().getRight().getKey());
-//		System.out.println(rb.getRoot().getRight().getLeft().getLeft().getKey());
-//		System.out.println(rb.getRoot().getRight().getRight().getKey());
-//		System.out.println(rb.getRoot().getRight().getRight().getLeft().getKey());
+		System.out.println(rb.getRoot().getRight().getKey());
+		System.out.println(rb.getRoot().getLeft().getLeft().getKey());
+		System.out.println(rb.getRoot().getLeft().getRight().getKey());
+		System.out.println(rb.getRoot().getRight().getLeft().getKey());
+		System.out.println(rb.getRoot().getRight().getLeft().getRight().getKey());
+		System.out.println(rb.getRoot().getRight().getLeft().getLeft().getKey());
+		System.out.println(rb.getRoot().getRight().getRight().getKey());
+		System.out.println(rb.getRoot().getRight().getRight().getLeft().getKey());
 //		
 		
 //		System.out.println();

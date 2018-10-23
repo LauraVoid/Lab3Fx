@@ -22,7 +22,7 @@ public class FIBA {
 
 	private IAVLTree<Double, Integer> reboundsAVLTree;
 	private IAVLTree<Double, Integer> stealAVLTree;
-	private IRBTree<Integer,Integer> locksRBTree;
+	private IRBTree<Double,Integer> locksRBTree;
 	
 	private FileReader fr;
 	private BufferedReader br;
@@ -34,7 +34,7 @@ public class FIBA {
 
 		reboundsAVLTree = new AVLTree<Double, Integer>(); 	
 		stealAVLTree = new AVLTree<Double, Integer>();
-		locksRBTree= new RBTree<Integer,Integer>();
+		locksRBTree= new RBTree<Double,Integer>();
 		
 //		deStealTree();
 //		deReboundsTree();
@@ -43,24 +43,24 @@ public class FIBA {
 	}
 	
 
-	public IRBTree<Integer, Integer> getRBTree() {
+	public IRBTree<Double, Integer> getRBTree() {
 		return locksRBTree;
 	}
 
 
-	public void setRBTree(IRBTree<Integer, Integer> rbTree) {
+	public void setRBTree(IRBTree<Double, Integer> rbTree) {
 		this.locksRBTree = rbTree;
 	}
 
 
-	public void insert(int key, int value) {
+	public void insert(Double key, Integer value) {
 		locksRBTree.RBInsert(key, value);
 	}
-	public Integer search(int key) {
+	public Integer search(Double key) {
 		return locksRBTree.RBSearch(locksRBTree.getRoot(),key).getValue();
 	}
 	
-	public void delete(int key) {
+	public void delete(Double key) {
 		locksRBTree.RBDelete(key);
 	}
 	

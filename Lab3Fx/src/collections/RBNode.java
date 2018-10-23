@@ -80,7 +80,7 @@ public class RBNode<K,V> implements Comparable<RBNode<K,V>> {
 	@Override
 	public int compareTo(RBNode<K,V> node) {
 		int contador=0;
-		if((Integer)key<(Integer)node.getKey()) {
+		if((double)key<(double)node.getKey()) {
 			contador= -1;
 		}
 		else contador= 1;
