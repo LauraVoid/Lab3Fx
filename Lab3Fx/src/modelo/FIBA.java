@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -142,12 +141,14 @@ public class FIBA {
 
 	public void addNewPlayer(Player newPlayer) throws IOException {
 
-		reboundsAVLTree.amountNodes(reboundsAVLTree.getRoot());
-		int index = reboundsAVLTree.getAmountNode() + 1;
-		reboundsAVLTree.insert(newPlayer.getRebounds(), index);
-		stealAVLTree.insert(newPlayer.getSteal(), index);
+		//reboundsAVLTree.amountNodes(reboundsAVLTree.getRoot());
+	//	int index = reboundsAVLTree.getAmountNode() + 1;
+		int index = locksRBTree.getAmountNodes() - 1;
+		//reboundsAVLTree.insert(newPlayer.getRebounds(), index);
+		//stealAVLTree.insert(newPlayer.getSteal(), index);
+		locksRBTree.RBInsert(newPlayer.getLocks(), index);
 		
-		writeNewPlayer(newPlayer, index);
+		//writeNewPlayer(newPlayer, index);
 
 	}
 
@@ -232,6 +233,8 @@ public class FIBA {
 		
 		FIBA fi= new FIBA();
 //		fi.cargarRebotes();
+//		fi.insertPoints(100, value);
+		fi.searchPointsRB(10.2);
 		
 		
 	

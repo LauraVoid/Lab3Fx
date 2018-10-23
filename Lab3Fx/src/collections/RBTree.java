@@ -8,7 +8,7 @@ public class RBTree<K,V> implements IRBTree<K,V> {
 	
 	private RBNode<K,V> root;
 	private RBNode<K,V> nil;
-	
+	private int amountNodes;
     public RBTree() {
 		nil=new RBNode<K,V>(null, null,RBNode.BLACK);
 		root=nil;
@@ -25,9 +25,30 @@ public class RBTree<K,V> implements IRBTree<K,V> {
 	public void setRoot(RBNode<K, V> root) {
 		this.root = root;
 	}
+   
 
     
-    public void leftRotate(RBNode<K,V> x) {
+    public RBNode<K, V> getNil() {
+	return nil;
+}
+
+
+public void setNil(RBNode<K, V> nil) {
+	this.nil = nil;
+}
+
+    @Override
+    public int getAmountNodes() {
+	return amountNodes;
+    }
+
+
+public void setAmountNodes(int amountNodes) {
+	this.amountNodes = amountNodes;
+}
+
+
+	public void leftRotate(RBNode<K,V> x) {
     	RBNode<K,V> y = x.getRight();
 		x.setRight(y.getLeft());
 		y.getLeft().setFather(x);
@@ -183,6 +204,7 @@ public class RBTree<K,V> implements IRBTree<K,V> {
 		newNode.setLeft(nil);
 		newNode.setRight(nil);
 		newNode.setColor(RBNode.RED);
+		amountNodes++;
 		RBInsertFixUp(newNode);
 		
 		}
@@ -363,22 +385,22 @@ public class RBTree<K,V> implements IRBTree<K,V> {
 //		rb.RBInsert(93.0, "player3");
 //		rb.RBInsert(105.0, "player4");
 //		rb.RBInsert(102.0, "player5");
-//		rb.RBInsert(91.0, "player6");
-//		
+//		rb.RBInsert(91.0, "player6");		
 		//rb.RBDelete(102.0);
-		//rb.preorder(rb.getRoot());
-	   System.out.println(rb.RBSearch(rb.getRoot(),13.0).getValue());
-		System.out.println(rb.getRoot().getKey());
-		System.out.println(rb.getRoot().getLeft().getKey());
-		System.out.println(rb.getRoot().getRight().getKey());
-		System.out.println(rb.getRoot().getLeft().getLeft().getKey());
-		System.out.println(rb.getRoot().getLeft().getRight().getKey());
-		System.out.println(rb.getRoot().getRight().getLeft().getKey());
-		System.out.println(rb.getRoot().getRight().getLeft().getRight().getKey());
-		System.out.println(rb.getRoot().getRight().getLeft().getLeft().getKey());
-		System.out.println(rb.getRoot().getRight().getRight().getKey());
-		System.out.println(rb.getRoot().getRight().getRight().getLeft().getKey());
-//		
+		rb.preorder(rb.getRoot());
+		System.out.println(rb.getAmountNodes());
+	    System.out.println(rb.RBSearch(rb.getRoot(),13.0).getValue());
+//		System.out.println(rb.getRoot().getKey());
+//		System.out.println(rb.getRoot().getLeft().getKey());
+//		System.out.println(rb.getRoot().getRight().getKey());
+//		System.out.println(rb.getRoot().getLeft().getLeft().getKey());
+//		System.out.println(rb.getRoot().getLeft().getRight().getKey());
+//		System.out.println(rb.getRoot().getRight().getLeft().getKey());
+//		System.out.println(rb.getRoot().getRight().getLeft().getRight().getKey());
+//		System.out.println(rb.getRoot().getRight().getLeft().getLeft().getKey());
+//		System.out.println(rb.getRoot().getRight().getRight().getKey());
+//		System.out.println(rb.getRoot().getRight().getRight().getLeft().getKey());
+////		
 		
 //		System.out.println();
 //		System.out.println(rb.getRoot().getColor());

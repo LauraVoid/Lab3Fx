@@ -6,6 +6,7 @@ public interface IRBTree<K,V> {
 	
 	public RBNode<K, V> getRoot();
 	public void setRoot(RBNode<K, V> root);
+	 public int getAmountNodes();
 	public void leftRotate(RBNode<K,V> x);
 	public void rightRotate(RBNode<K,V> y);
 	public RBNode<K,V> RBSearch(RBNode<K,V> searched, K k);
