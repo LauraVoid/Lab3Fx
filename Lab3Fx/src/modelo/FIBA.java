@@ -23,6 +23,7 @@ public class FIBA {
 	private IAVLTree<Double, Integer> reboundsAVLTree;
 	private IAVLTree<Double, Integer> stealAVLTree;
 	private IRBTree<Integer,Integer> locksRBTree;
+	
 	private FileReader fr;
 	private BufferedReader br;
 	private FileWriter fw;
