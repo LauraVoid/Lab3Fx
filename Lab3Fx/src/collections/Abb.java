@@ -1,6 +1,6 @@
 package collections;
 
-public class Abb<T extends Comparable<? super T>,V> implements IAbb<T> {
+public class Abb<T extends Comparable<? super T>,V> implements IAbb<T,V> {
 
 	/**
 	 * Relation with the AbbNode class. It's the root of our search binary tree.
@@ -44,12 +44,12 @@ public class Abb<T extends Comparable<? super T>,V> implements IAbb<T> {
 	 * Add an element to the tree.
 	 */
 	@Override
-	public void addAbb(T element) {
+	public void addAbb(T element, V value) {
 		
 		if (root == null) {
-			root = new AbbNode<T,V>(element);
+			root = new AbbNode<T,V>(element, value);
 		} else {
-			root.addAbb(element);
+			root.addAbb(element, value);
 		}
 		weight++;
 	}
@@ -70,12 +70,13 @@ public class Abb<T extends Comparable<? super T>,V> implements IAbb<T> {
      * @return
      */
 	@Override
-	public T searchAbb(T a) {
-		AbbNode<T,V> aux = new AbbNode<T,V>(a);
+	public AbbNode<T,V> searchAbb(T a) {
+		AbbNode<T,V> aux = new AbbNode<T,V>(a,null);
 		
 		if(root != null) {
 			if((Double)root.getDate() == (Double)aux.getDate()) {
-				return root.getDate();
+				
+				return new AbbNode<T,V>(root.getDate(), root.getValue());
 			}else {
 				return root.searchElement(a);
 			}

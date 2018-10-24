@@ -27,10 +27,11 @@ public class AbbNode<T extends Comparable<? super T>, V>  implements Serializabl
 	/**
 	 * Builder method.
 	 */
-	public AbbNode(T date) {
+	public AbbNode(T date, V value) {
 		this.date = date;
 		left = null;
 		right = null;
+		this.value = value;
 	}
 
 	/**
@@ -54,15 +55,15 @@ public class AbbNode<T extends Comparable<? super T>, V>  implements Serializabl
 	/**
 	 * Add an element to the tree.
 	 */
-	public void addAbb(T newElement) {
-		AbbNode<T, V> newElement2 = new AbbNode<T, V>(newElement);
+	public void addAbb(T newElement, V value) {
+		AbbNode<T, V> newElement2 = new AbbNode<T, V>(newElement, value);
 		int result = date.compareTo(newElement);
 
 		if (result < 0) {
 			if (right == null) {
 				right = newElement2;
 			} else {
-				right.addAbb(newElement);
+				right.addAbb(newElement, value);
 			}
 
 		}
@@ -72,7 +73,7 @@ public class AbbNode<T extends Comparable<? super T>, V>  implements Serializabl
 			if (left == null) {
 				left = newElement2;
 			} else {
-				left.addAbb(newElement);
+				left.addAbb(newElement, value);
 			}
 
 		}
@@ -140,10 +141,10 @@ public class AbbNode<T extends Comparable<? super T>, V>  implements Serializabl
 	 * @param element
 	 * @return Searched element
 	 */
-	public T searchElement(T element) {
+	public AbbNode<T,V> searchElement(T element) {
         int result = date.compareTo(element);
 		if (result == 0) {
-			return date;
+			return new AbbNode<T,V>(date, value);
 		} else {
 			if (result > 0) {
 				return (left != null) ? left.searchElement(element) : null;
