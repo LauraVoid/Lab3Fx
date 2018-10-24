@@ -14,6 +14,7 @@ import java.io.ObjectOutputStream;
 import collections.AVLNode;
 import collections.AVLTree;
 import collections.Abb;
+import collections.AbbNode;
 import collections.IAVLTree;
 import collections.IRBTree;
 import collections.RBNode;
@@ -25,7 +26,8 @@ public class FIBA {
 	private IAVLTree<Double, Integer> stealAVLTree;
 	private IRBTree<Double,Integer> stealRBTree;
 	private IRBTree<Double,Integer> locksRBTree;
-	private Abb<Integer,Integer> pointsABBTree;
+	private Abb<Double,Integer> reboundsABBTree;
+	private Abb<Double,Integer> assistsABBTree;
 	
 	private FileReader fr;
 	private BufferedReader br;
@@ -39,12 +41,15 @@ public class FIBA {
 		stealAVLTree = new AVLTree<Double, Integer>();
 		locksRBTree= new RBTree<Double,Integer>();
 		stealRBTree= new RBTree<Double,Integer>();
-		pointsABBTree= new Abb<Integer,Integer>();
+		reboundsABBTree= new Abb<Double,Integer>();
+		assistsABBTree= new Abb<Double,Integer>();
 		
 //		deStealAVLTree();
 //		deStealRBTree();
 //		deReboundsAVLTree();
-		deLocksRBTree();
+//		deLocksRBTree();
+//		deAssistsABBTree();
+		deReboundsABBTree();
 //		playerAmount = reboundsAVLTree.getAmountNode();
 
 	}
@@ -102,12 +107,27 @@ public class FIBA {
 
 		return searchTxtPlayer(num + "");
 	}
+	public Player searchReboundsABB(Double key) throws IOException {
+
+		System.out.println(reboundsABBTree.searchAbb(key));
+//		System.out.println(reboundsABBTree.searchAbb(key).getDate());
+		Integer num = reboundsABBTree.searchAbb(key).getValue();
+		
+
+		return searchTxtPlayer(num + "");
+	}
+	public Player searchAssistsABB(Double key) throws IOException {
+
+		Integer num = assistsABBTree.searchAbb(key).getValue();
+
+		return searchTxtPlayer(num + "");
+	}
 
 	public Player searchStealAVL(Double key) throws IOException {
 
-		System.out.println(key+ " Valor a buscar");
+//		System.out.println(key+ " Valor a buscar");
 		Integer num = stealAVLTree.search(key, stealAVLTree.getRoot()).getValue();
-		System.out.println(num +" NUM");
+//		System.out.println(num +" NUM");
 		return searchTxtPlayer(num + "");
 	}
 	
@@ -190,11 +210,11 @@ public class FIBA {
 			String line= br.readLine();
 			String [] info= line.split(",");
 //			System.out.println(info[6]+" VALOR STEAL");
-			double d=Double.parseDouble(info[6]);
+			double d=Double.parseDouble(info[5]);
 //			System.out.println(d);
 //			System.out.println(i);
 //			System.out.println(stealRBTree.getRoot().getKey());
-			stealRBTree.RBInsert(d, (Integer)i);
+			assistsABBTree.addAbb(d, (Integer)i);
 //			Integer d=Integer.parseInt(info[3]);
 //			pointsABBTree.addAbb(d, (Integer)1);
 			
@@ -207,9 +227,9 @@ public class FIBA {
 	}
 	public void serializar() throws IOException {
 		
-		FileOutputStream fout=new FileOutputStream("ArbolesSerializados/stealRBTree.dat");
+		FileOutputStream fout=new FileOutputStream("ArbolesSerializados/assistsABBTree.dat");
 		ObjectOutputStream obj= new ObjectOutputStream(fout);
-		obj.writeObject(stealRBTree.getRoot());
+		obj.writeObject(assistsABBTree.getRoot());
 		
 		obj.close();
 		fout.close();
@@ -264,6 +284,34 @@ public class FIBA {
 		RBNode<Double, Integer> newRoot=(RBNode<Double, Integer>)obj.readObject();
 		
 		locksRBTree.setRoot(newRoot);
+		
+		obj.close();
+		fi.close();
+	
+		
+
+	}
+	public void deReboundsABBTree() throws IOException, ClassNotFoundException {
+		FileInputStream fi= new FileInputStream("ArbolesSerializados/reboundsABBTree.dat");
+		ObjectInputStream obj= new ObjectInputStream(fi);
+		
+		AbbNode<Double, Integer> newRoot=(AbbNode<Double, Integer>)obj.readObject();
+		
+		reboundsABBTree.setRoot(newRoot);
+		
+		obj.close();
+		fi.close();
+	
+		
+
+	}
+	public void deAssistsABBTree() throws IOException, ClassNotFoundException {
+		FileInputStream fi= new FileInputStream("ArbolesSerializados/assistsABBTree.dat");
+		ObjectInputStream obj= new ObjectInputStream(fi);
+		
+		AbbNode<Double, Integer> newRoot=(AbbNode<Double, Integer>)obj.readObject();
+		
+		assistsABBTree.setRoot(newRoot);
 		
 		obj.close();
 		fi.close();

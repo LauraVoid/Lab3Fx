@@ -51,6 +51,35 @@ public class SampleController {
 
     @FXML
     private RadioButton RdAVL;
+    
+
+
+    @FXML
+    private TextField txtName;
+
+    @FXML
+    private TextField txtAge;
+
+    @FXML
+    private TextField txtTeam;
+
+    @FXML
+    private TextField txtPoints;
+
+    @FXML
+    private TextField txtRebounds;
+
+    @FXML
+    private TextField txtAssists;
+
+    @FXML
+    private TextField txtSteal;
+
+    @FXML
+    private TextField txtLocks;
+
+    @FXML
+    private Button butAddPlayer;
 
     @FXML
     void butSearch(ActionEvent event) {
@@ -89,6 +118,24 @@ public class SampleController {
 			
     		
     	}
+    }
+    @FXML
+    void butAddPlayerE(ActionEvent event) {
+    	
+    	String name= txtName.getText();
+    	Integer age=Integer.parseInt(txtAge.getText());
+    	String team= txtTeam.getText();
+    	Integer points= Integer.parseInt(txtPoints.getText());
+    	Double rebounds= Double.parseDouble(txtRebounds.getText());
+    	Double assists=Double.parseDouble(txtAssists.getText());
+    	Double steal=Double.parseDouble(txtSteal.getText());
+    	Double locks=Double.parseDouble(txtLocks.getText());
+    	
+    	Player player= new Player(name, age, team,points,rebounds,assists,steal,locks);
+    	
+    	
+    	
+
     }
     
     
@@ -151,6 +198,9 @@ public String playerFoundInfoRebounds() throws IOException {
     	if(RdAVL.isSelected()) {
     		
     		 found= fiba.searchReboundsAVL(rebounds);
+    	}
+    	else if(RdABB.isSelected()) {
+    		found= fiba.searchReboundsABB(rebounds);
     	}
     	// ABB
     	 

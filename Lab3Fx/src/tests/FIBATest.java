@@ -49,7 +49,7 @@ class FIBATest {
 	
 	}
 	@Test
-	public void insertTest() throws ClassNotFoundException, IOException {
+	public void insertTestRB() throws ClassNotFoundException, IOException {
 		setUp1();
 		fiba.insertLocks(100.0, player1);
 		fiba.insertLocks(92.0, player2);
@@ -63,7 +63,7 @@ class FIBATest {
 	}
 	
 	@Test
-	public void deleteTest() throws ClassNotFoundException, IOException {
+	public void deleteTestRB() throws ClassNotFoundException, IOException {
 		setUp2();
 	
 		fiba.deleteLocks(102.0);
@@ -71,7 +71,7 @@ class FIBATest {
 	}
 	
 	@Test
-	public void searchTest() throws ClassNotFoundException, IOException {
+	public void searchTestRB() throws ClassNotFoundException, IOException {
 		setUp2();
 		assertEquals(fiba.getRBLocksTree().getRoot().getRight().getValue(),fiba.searchLocksRB(102.0));
 		assertEquals(fiba.getRBLocksTree().getRoot().getValue(),fiba.searchLocksRB(93.0));
