@@ -116,19 +116,19 @@ public class AVLTree<Q, K> implements IAVLTree<Q, K> {
 	}
 
 	@Override
-	public AVLNode<Q, K> remove(AVLNode<Q, K> element, AVLNode<Q, K> root) {
+	public AVLNode<Q, K> remove(Q key, K value, AVLNode<Q, K> root) {
 
+		AVLNode<Q, K> element= new AVLNode<Q, K> (key,value);
 		if (root == null) {
 			return root;
 		}
 		if (element.compareTo(root) < 0) {
-			root.setLeft(remove(element, root.getLeft()));
+			root.setLeft(remove(key, value, root.getLeft()));
 		}
 
 		else if (element.compareTo(root) > 0) {
-//			  System.out.println("aqui");
 			  System.out.println(root.getKey()+" here");
-			root.setRight(remove(element, root.getRight()));
+			root.setRight(remove(key, value, root.getRight()));
 		}
 
 		else {
@@ -152,7 +152,7 @@ public class AVLTree<Q, K> implements IAVLTree<Q, K> {
 				
 				root = temp;
 
-				root.setRight(remove(temp, root.getRight()));
+				root.setRight(remove(temp.getKey(),temp.getValue(), root.getRight()));
 			}
 
 		}

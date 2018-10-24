@@ -40,41 +40,41 @@ class FIBATest {
 		player4=4;
 		player5=5;
 		player6=6;
-		fiba.insertPoints(100.0, player1);
-		fiba.insertPoints(92.0, player2);
-		fiba.insertPoints(93.0, player3);
-		fiba.insertPoints(105.0, player4);
-		fiba.insertPoints(102.0, player5);
-		fiba.insertPoints(91.0, player6);
+		fiba.insertLocks(100.0, player1);
+		fiba.insertLocks(92.0, player2);
+		fiba.insertLocks(93.0, player3);
+		fiba.insertLocks(105.0, player4);
+		fiba.insertLocks(102.0, player5);
+		fiba.insertLocks(91.0, player6);
 	
 	}
 	@Test
 	public void insertTest() throws ClassNotFoundException, IOException {
 		setUp1();
-		fiba.insertPoints(100.0, player1);
-		fiba.insertPoints(92.0, player2);
-		fiba.insertPoints(93.0, player3);
-		fiba.insertPoints(105.0, player4);
-		fiba.insertPoints(102.0, player5);
-		fiba.insertPoints(91.0, player6);
-		assertEquals(fiba.getRBPointsTree().getRoot().getValue(),player3);
-		assertEquals(fiba.getRBPointsTree().getRoot().getLeft().getValue(),player2);
-		assertEquals(fiba.getRBPointsTree().getRoot().getRight().getColor(),RBNode.BLACK);
+		fiba.insertLocks(100.0, player1);
+		fiba.insertLocks(92.0, player2);
+		fiba.insertLocks(93.0, player3);
+		fiba.insertLocks(105.0, player4);
+		fiba.insertLocks(102.0, player5);
+		fiba.insertLocks(91.0, player6);
+		assertEquals(fiba.getRBLocksTree().getRoot().getValue(),player3);
+		assertEquals(fiba.getRBLocksTree().getRoot().getLeft().getValue(),player2);
+		assertEquals(fiba.getRBLocksTree().getRoot().getRight().getColor(),RBNode.BLACK);
 	}
 	
 	@Test
 	public void deleteTest() throws ClassNotFoundException, IOException {
 		setUp2();
 	
-		fiba.deletePoints(102.0);
-		assertEquals(fiba.getRBPointsTree().getRoot().getRight().getValue(),player1);
+		fiba.deleteLocks(102.0);
+		assertEquals(fiba.getRBLocksTree().getRoot().getRight().getValue(),player1);
 	}
 	
 	@Test
 	public void searchTest() throws ClassNotFoundException, IOException {
 		setUp2();
-		assertEquals(fiba.getRBPointsTree().getRoot().getRight().getValue(),fiba.searchPoints(102.0));
-		assertEquals(fiba.getRBPointsTree().getRoot().getValue(),fiba.searchPoints(93.0));
+		assertEquals(fiba.getRBLocksTree().getRoot().getRight().getValue(),fiba.searchLocksRB(102.0));
+		assertEquals(fiba.getRBLocksTree().getRoot().getValue(),fiba.searchLocksRB(93.0));
 	}
 
 }

@@ -2,6 +2,8 @@ package application;
 
 import java.io.IOException;
 
+import javax.swing.JOptionPane;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -45,7 +47,7 @@ public class SampleController {
     private RadioButton RdABB;
 
     @FXML
-    private RadioButton RdRN;
+    private RadioButton RdRB;
 
     @FXML
     private RadioButton RdAVL;
@@ -55,18 +57,26 @@ public class SampleController {
     	
     	if(RdRobos.isSelected()) {
     		
-    		if(RdAVL.isSelected()){
-    			String val= TxtValorB.getText();
-    			try {
-					Player p=fiba.searchStealAVL(Double.parseDouble(val));
-					System.out.println(p.getName());
-					System.out.println(p.getSteal());
-//					System.out.println(p.get);
-				} catch (NumberFormatException | IOException e) {
-					e.printStackTrace();
-				}
-    		}
+    		try {
+				String info =playerFoundInfoRobos();
+				System.out.println(info);
+			} catch (IOException e) {
+				
+				JOptionPane.showMessageDialog(null,"Jugador no encontrado"  );
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
     		
+    	}
+    	else if (RdRebotes.isSelected()) {
+    		
+    		try {
+				String info= playerFoundInfoRebounds();
+				System.out.println(info);
+			} catch (IOException e) {
+				JOptionPane.showMessageDialog(null,"Jugador no encontrado"  );
+				e.printStackTrace();
+			}
     	}
     }
     
@@ -75,7 +85,7 @@ public class SampleController {
 		// TODO Auto-generated method stub
     	ToggleGroup g1=new ToggleGroup();
     	RdABB.setToggleGroup(g1);
-    	RdRN.setToggleGroup(g1);
+    	RdRB.setToggleGroup(g1);
     	RdAVL.setToggleGroup(g1);
     	
 	}
@@ -103,8 +113,38 @@ public class SampleController {
     	toggleGroup2();
     }
     
-    public void playerFoundInfo() {
+    public String playerFoundInfoRobos() throws IOException {
     	
+    	String info= TxtValorB.getText();
+    	Double steal= Double.parseDouble(info);
+    	Player found=null;
+    	if(RdAVL.isSelected()) {
+    		
+    		 found= fiba.searchStealAVL(steal);
+    	}
+    	else if(RdRB.isSelected()) {
+    		 found= fiba.searchStealRB(steal);
+    	}
+    	 
+    	String player= "Name "+found.getName()+" steal " +found.getSteal();
+    	return player;
+    	
+    	
+    	
+    }
+public String playerFoundInfoRebounds() throws IOException {
+    	
+    	String info= TxtValorB.getText();
+    	Double rebounds= Double.parseDouble(info);
+    	Player found=null;
+    	if(RdAVL.isSelected()) {
+    		
+    		 found= fiba.searchReboundsAVL(rebounds);
+    	}
+    	// ABB
+    	 
+    	String player= "Name "+found.getName()+" steal " +found.getSteal();
+    	return player;
     	
     	
     	
@@ -113,17 +153,26 @@ public class SampleController {
     @FXML
     void rdAsistencias(ActionEvent event) {
 
+    	RdRB.setDisable(true);
+    	RdAVL.setDisable(true);
     	
     }
 
     @FXML
     void rdRebotes(ActionEvent event) {
 
+    	RdRB.setDisable(true);
     }
 
     @FXML
     void rdRobos(ActionEvent event) {
     	RdABB.setDisable(true);
+    }
+    @FXML
+    void rdBloqueos(ActionEvent event) {
+    	RdAVL.setDisable(true);
+    	RdABB.setDisable(true);
+
     }
     
     

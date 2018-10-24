@@ -40,7 +40,7 @@ public class FIBA {
 		stealRBTree= new RBTree<Double,Integer>();
 		pointsABBTree= new Abb<Integer,Integer>();
 		
-//		deStealTree();
+		deStealAVLTree();
 //		deReboundsTree();
 //		playerAmount = reboundsAVLTree.getAmountNode();
 
@@ -60,9 +60,19 @@ public class FIBA {
 	public void insertLocks(Double key, Integer value) {
 		locksRBTree.RBInsert(key, value);
 	}
-	public Integer searchLocks(Double key) {
-		return locksRBTree.RBSearch(locksRBTree.getRoot(),key).getValue();
+	
+	
+	
+	
+	public void deleteStealAVL(double key) {
+		
+		Integer num=stealAVLTree.search(key, stealAVLTree.getRoot()).getValue();
+		stealAVLTree.remove(key, num, stealAVLTree.getRoot());
 	}
+	public void insertStealAVL(Double key, Integer value) {
+		stealAVLTree.insert(key, value);
+	}
+	
 	
 	
 	
@@ -70,30 +80,7 @@ public class FIBA {
 		locksRBTree.RBDelete(key);
 	}
 	
-//	public IRBTree<Double, Integer> getRBPointsTree() {
-//		return pointsRBTree;
-//	}
-//
-//
-//	public void setRBPointsTree(IRBTree<Double, Integer> pointsRBTree) {
-//		this.pointsRBTree = pointsRBTree;
-//	}
-//
-//
-//	public void insertPoints(Double key, Integer value) {
-//		pointsABBTree.RBInsert(key, value);
-//	}
-//	public Integer searchPoints(Double key) {
-//		return pointsRBTree.RBSearch(pointsRBTree.getRoot(),key).getValue();
-//	}
-	
-	
-//	
-//	public void deletePoints(Double key) {
-//		pointsRBTree.RBDelete(key);
-//	}
-//	
-	
+
 
 	public Player searchReboundsAVL(Double key) throws IOException {
 
@@ -113,6 +100,12 @@ public class FIBA {
 	public Player searchLocksRB(Double key) throws IOException {
 
 		Integer num = locksRBTree.RBSearch( locksRBTree.getRoot(),key).getValue();
+
+		return searchTxtPlayer(num + "");
+	}
+	public Player searchStealRB(Double key) throws IOException {
+
+		Integer num = stealRBTree.RBSearch( stealRBTree.getRoot(),key).getValue();
 
 		return searchTxtPlayer(num + "");
 	}
@@ -183,7 +176,7 @@ public class FIBA {
 			String line= br.readLine();
 			String [] info= line.split(",");
 			Double d=Double.parseDouble(info[6]);
-			stealRBTree.RBInsert(d, (Integer)i);
+//			stealRBTree.RBInsert(d, (Integer)i);
 //			Integer d=Integer.parseInt(info[3]);
 //			pointsABBTree.addAbb(d, (Integer)1);
 			
@@ -204,7 +197,7 @@ public class FIBA {
 		fout.close();
 		
 	}
-	public void deStealTree() throws IOException, ClassNotFoundException {
+	public void deStealAVLTree() throws IOException, ClassNotFoundException {
 		FileInputStream fi= new FileInputStream("ArbolesSerializados/stealAVLTree.dat");
 		ObjectInputStream obj= new ObjectInputStream(fi);
 		
@@ -235,8 +228,8 @@ public class FIBA {
 	
 	public static void main(String[] args) throws IOException, ClassNotFoundException {
 		
-		FIBA fi= new FIBA();
-		fi.cargarRebotes();
+//		FIBA fi= new FIBA();
+//		fi.cargarRebotes();
 //		fi.insertPoints(100, value);
 //		fi.searchPointsRB(10.2);
 		

@@ -1,7 +1,166 @@
 <?xml version="1.0" encoding="UTF-8"?>
-	
-<?import javafx.scene.layout.BorderPane?>
-	
-<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.SampleController">
-	<!-- TODO Add Nodes -->
-</BorderPane>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.SampleController">
+   <children>
+      <TabPane layoutY="-5.0" prefHeight="406.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Agregar">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Label layoutX="34.0" layoutY="29.0" text="Ingresar los datos del nuevo jugador">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="41.0" layoutY="67.0" text="Nombre">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="44.0" layoutY="113.0" text="Edad">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="39.0" layoutY="159.0" text="Equipo">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="39.0" layoutY="205.0" text="Puntos">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="36.0" layoutY="244.0" text="Rebotes">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="34.0" layoutY="292.0" text="Asistencias">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="307.0" layoutY="67.0" text="Robos">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="307.0" layoutY="113.0" text="Bloqueos">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="txtName" layoutX="115.0" layoutY="64.0" />
+                        <TextField fx:id="txtAge" layoutX="115.0" layoutY="110.0" />
+                        <TextField fx:id="txtTeam" layoutX="115.0" layoutY="156.0" />
+                        <TextField fx:id="txtPoints" layoutX="115.0" layoutY="192.0" />
+                        <TextField fx:id="txtRebounds" layoutX="115.0" layoutY="241.0" />
+                        <TextField fx:id="txtAssists" layoutX="115.0" layoutY="289.0" />
+                        <TextField fx:id="txtSteal" layoutX="362.0" layoutY="64.0" />
+                        <TextField fx:id="txtLocks" layoutX="362.0" layoutY="110.0" />
+                        <Button fx:id="butAddPlayer" layoutX="362.0" layoutY="167.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="123.0" text="Agregar Jugador" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Eliminar">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+            </content>
+          </Tab>
+            <Tab text="Buscar">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <RadioButton fx:id="RdRobos" layoutX="58.0" layoutY="80.0" mnemonicParsing="false" onAction="#rdRobos" text="Robos">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </RadioButton>
+                        <RadioButton fx:id="RdRebotes" layoutX="58.0" layoutY="114.0" mnemonicParsing="false" onAction="#rdRebotes" text="Rebotes">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </RadioButton>
+                        <RadioButton fx:id="RdBloqueos" layoutX="55.0" layoutY="147.0" mnemonicParsing="false" onAction="#rdBloqueos" text="Bloqueos">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </RadioButton>
+                        <RadioButton fx:id="RdAsistencias" layoutX="57.0" layoutY="179.0" mnemonicParsing="false" onAction="#rdAsistencias" text="Asistencias">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </RadioButton>
+                        <RadioButton fx:id="RdRB" layoutX="260.0" layoutY="105.0" mnemonicParsing="false" text="RB">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </RadioButton>
+                        <RadioButton fx:id="RdABB" layoutX="256.0" layoutY="138.0" mnemonicParsing="false" text="ABB">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </RadioButton>
+                        <RadioButton fx:id="RdAVL" layoutX="256.0" layoutY="71.0" mnemonicParsing="false" text="AVL">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </RadioButton>
+                        <Label layoutX="28.0" layoutY="28.0" text="Realizar Busqueda por">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="256.0" layoutY="28.0" text="Estructura:">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="58.0" layoutY="217.0" text="Ingresar valor">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="TxtValorB" layoutX="33.0" layoutY="248.0" />
+                        <Button fx:id="butSearch" layoutX="72.0" layoutY="292.0" mnemonicParsing="false" onAction="#butSearch" text="Buscar" />
+                        <Label layoutX="405.0" layoutY="62.0" text="Tiempo de busqueda">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="labTimeValue" ellipsisString="Valor" layoutX="405.0" layoutY="93.0" lineSpacing="2.0" prefHeight="24.0" prefWidth="95.0" text="Tiempo" textFill="#d00e0e" textOverrun="CENTER_ELLIPSIS">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                           <effect>
+                              <Blend mode="OVERLAY" opacity="0.82" />
+                           </effect>
+                        </Label>
+                        <Label layoutX="362.0" layoutY="166.0" text="Resultado de busqueda">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>
