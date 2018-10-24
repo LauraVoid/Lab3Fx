@@ -198,9 +198,9 @@ public class AVLTree<Q, K> implements IAVLTree<Q, K> {
 	@Override
 	public AVLNode<Q, K> search(Q element, AVLNode<Q, K> root) {
 
-		System.out.println(root.getKey()+ "VALUE SEARCH");
+//		System.out.println(root.getKey()+ "VALUE SEARCH");
 		if (((Double) root.getKey()).equals((Double)element)) {
-			System.out.println(root.getValue()+ " found txt");
+//			System.out.println(root.getValue()+ " found txt");
 			return root;
 		}
 

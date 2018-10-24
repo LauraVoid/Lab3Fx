@@ -82,6 +82,7 @@ public class RBNode<K,V> implements Comparable<RBNode<K,V>>,Serializable {
 	@Override
 	public int compareTo(RBNode<K,V> node) {
 		int contador=0;
+//		System.out.println(node.getValue() +" node");
 		if((double)key<(double)node.getKey()) {
 			contador= -1;
 		}

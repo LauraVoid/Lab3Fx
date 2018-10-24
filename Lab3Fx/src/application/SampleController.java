@@ -78,6 +78,17 @@ public class SampleController {
 				e.printStackTrace();
 			}
     	}
+    	else if(RdBloqueos.isSelected()) {
+			try {
+				String info = playerFoundInfoLocks();
+				System.out.println(info);
+			} catch (IOException e) {
+				JOptionPane.showMessageDialog(null,"Jugador no encontrado"  );
+				e.printStackTrace();
+			}
+			
+    		
+    	}
     }
     
     
@@ -149,6 +160,22 @@ public String playerFoundInfoRebounds() throws IOException {
     	
     	
     }
+public String playerFoundInfoLocks() throws IOException {
+	
+	String info= TxtValorB.getText();
+	Double rebounds= Double.parseDouble(info);
+	Player found=null;
+	
+		
+		 found= fiba.searchLocksRB(rebounds);
+	
+	 
+	String player= "Name "+found.getName()+" steal " +found.getSteal();
+	return player;
+	
+	
+	
+}
     
     @FXML
     void rdAsistencias(ActionEvent event) {

@@ -370,27 +370,28 @@ public void setAmountNodes(int amountNodes) {
     	}
     }
 	public static void main(String[] args) {
-		RBTree<Double,String> rb = new RBTree<Double,String>();
-		rb.RBInsert(8.0, "player1");
-		rb.RBInsert(7.0, "player2");
-		rb.RBInsert(12.0, "player3");
-		rb.RBInsert(6.0, "player4");
-		rb.RBInsert(7.5, "player5");
-		rb.RBInsert(10.0, "player6");
-		rb.RBInsert(14.0, "player7");
-		rb.RBInsert(13.0, "player8");
-		rb.RBInsert(15.0, "player9");
+		IRBTree<Double,Integer> rb = new RBTree<Double,Integer>();
+		rb.RBInsert(35.75075961202617,9);
+//		rb.RBInsert(7.0, "player2");
+//		rb.RBInsert(12.0, "player3");
+//		rb.RBInsert(6.0, "player4");
+//		rb.RBInsert(7.5, "player5");
+//		rb.RBInsert(10.0, "player6");
+//		rb.RBInsert(14.0, "player7");
+//		rb.RBInsert(13.0, "player8");
+//		rb.RBInsert(15.0, "player9");
 //		rb.RBInsert(100.0, "player1");
 //		rb.RBInsert(92.0, "player2");
 //		rb.RBInsert(93.0, "player3");
 //		rb.RBInsert(105.0, "player4");
 //		rb.RBInsert(102.0, "player5");
 //		rb.RBInsert(91.0, "player6");		
-		//rb.RBDelete(102.0);
-		rb.preorder(rb.getRoot());
-		System.out.println(rb.getAmountNodes());
-	    System.out.println(rb.RBSearch(rb.getRoot(),13.0).getValue());
-//		System.out.println(rb.getRoot().getKey());
+//		rb.RBDelete(102.0);
+//		rb.preorder(rb.getRoot());
+//		System.out.println(rb.getAmountNodes());
+//	    System.out.println(rb.RBSearch(rb.getRoot(),13.0).getValue());
+        System.out.println(rb.getRoot().getKey());
+        System.out.println(rb.getRoot().getValue());
 //		System.out.println(rb.getRoot().getLeft().getKey());
 //		System.out.println(rb.getRoot().getRight().getKey());
 //		System.out.println(rb.getRoot().getLeft().getLeft().getKey());
@@ -400,8 +401,8 @@ public void setAmountNodes(int amountNodes) {
 //		System.out.println(rb.getRoot().getRight().getLeft().getLeft().getKey());
 //		System.out.println(rb.getRoot().getRight().getRight().getKey());
 //		System.out.println(rb.getRoot().getRight().getRight().getLeft().getKey());
-////		
-		
+//
+//		
 //		System.out.println();
 //		System.out.println(rb.getRoot().getColor());
 //		System.out.println(rb.getRoot().getLeft().getColor());
@@ -421,13 +422,13 @@ public void setAmountNodes(int amountNodes) {
 //		System.out.println(rb.getRoot().getRight().getColor());
 //		System.out.println(rb.getRoot().getRight().getRight().getColor());
 //		System.out.println(rb.getRoot().getLeft().getLeft().getColor());
-//		
+//	}	
 //	}
 	
-	
+}
 
 
 	}
 
-}
+
 
