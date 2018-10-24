@@ -1,8 +1,10 @@
 package collections;
 
+import java.io.Serializable;
+
 import collections.RBNode;
 
-public class RBNode<K,V> implements Comparable<RBNode<K,V>> {
+public class RBNode<K,V> implements Comparable<RBNode<K,V>>,Serializable {
 	public static final String RED= "Red";
 	public static final String BLACK= "Black";
 	private RBNode<K,V> right;

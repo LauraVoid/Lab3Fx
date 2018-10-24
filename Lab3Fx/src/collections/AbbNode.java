@@ -1,7 +1,8 @@
 package collections;
 
+import java.io.Serializable;
 
-public class AbbNode<T extends Comparable<? super T>, V> {
+public class AbbNode<T extends Comparable<? super T>, V>  implements Serializable{
 
 	/**
 	 * Save the left son.

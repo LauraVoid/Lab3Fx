@@ -13,6 +13,7 @@ import java.io.ObjectOutputStream;
 
 import collections.AVLNode;
 import collections.AVLTree;
+import collections.Abb;
 import collections.IAVLTree;
 import collections.IRBTree;
 import collections.RBTree;
@@ -21,8 +22,9 @@ public class FIBA {
 
 	private IAVLTree<Double, Integer> reboundsAVLTree;
 	private IAVLTree<Double, Integer> stealAVLTree;
+	private IRBTree<Double,Integer> stealRBTree;
 	private IRBTree<Double,Integer> locksRBTree;
-	private IRBTree<Double,Integer> pointsRBTree;
+	private Abb<Integer,Integer> pointsABBTree;
 	
 	private FileReader fr;
 	private BufferedReader br;
@@ -35,7 +37,8 @@ public class FIBA {
 		reboundsAVLTree = new AVLTree<Double, Integer>(); 	
 		stealAVLTree = new AVLTree<Double, Integer>();
 		locksRBTree= new RBTree<Double,Integer>();
-		pointsRBTree= new RBTree<Double,Integer>();
+		stealRBTree= new RBTree<Double,Integer>();
+		pointsABBTree= new Abb<Integer,Integer>();
 		
 //		deStealTree();
 //		deReboundsTree();
@@ -67,29 +70,29 @@ public class FIBA {
 		locksRBTree.RBDelete(key);
 	}
 	
-	public IRBTree<Double, Integer> getRBPointsTree() {
-		return pointsRBTree;
-	}
-
-
-	public void setRBPointsTree(IRBTree<Double, Integer> pointsRBTree) {
-		this.pointsRBTree = pointsRBTree;
-	}
-
-
-	public void insertPoints(Double key, Integer value) {
-		pointsRBTree.RBInsert(key, value);
-	}
-	public Integer searchPoints(Double key) {
-		return pointsRBTree.RBSearch(pointsRBTree.getRoot(),key).getValue();
-	}
+//	public IRBTree<Double, Integer> getRBPointsTree() {
+//		return pointsRBTree;
+//	}
+//
+//
+//	public void setRBPointsTree(IRBTree<Double, Integer> pointsRBTree) {
+//		this.pointsRBTree = pointsRBTree;
+//	}
+//
+//
+//	public void insertPoints(Double key, Integer value) {
+//		pointsABBTree.RBInsert(key, value);
+//	}
+//	public Integer searchPoints(Double key) {
+//		return pointsRBTree.RBSearch(pointsRBTree.getRoot(),key).getValue();
+//	}
 	
 	
-	
-	public void deletePoints(Double key) {
-		pointsRBTree.RBDelete(key);
-	}
-	
+//	
+//	public void deletePoints(Double key) {
+//		pointsRBTree.RBDelete(key);
+//	}
+//	
 	
 
 	public Player searchReboundsAVL(Double key) throws IOException {
@@ -114,13 +117,13 @@ public class FIBA {
 		return searchTxtPlayer(num + "");
 	}
 
-	public Player searchPointsRB(Double key) throws IOException {
-
-		System.out.println(key+ " Valor a buscar");
-		Integer num = pointsRBTree.RBSearch(pointsRBTree.getRoot(),key).getValue();
-		System.out.println(num +" NUM");
-		return searchTxtPlayer(num + "");
-	}
+//	public Player searchPointsRB(Double key) throws IOException {
+//
+//		System.out.println(key+ " Valor a buscar");
+//		Integer num = pointsRBTree.RBSearch(pointsRBTree.getRoot(),key).getValue();
+//		System.out.println(num +" NUM");
+//		return searchTxtPlayer(num + "");
+//	}
 
 	public Player searchTxtPlayer(String value) throws IOException {
 
@@ -172,16 +175,17 @@ public class FIBA {
 		
 		
 		
-		for (int i = 0; i < 199997; i++) {
+		for (int i = 0; i < 199999; i++) {
 			File actual = new File("PlayersData/"+i+".txt/");
 			System.out.println(actual.getName()+ " Nombre file");
 			fr= new FileReader(actual);
 			br=new BufferedReader(fr);
 			String line= br.readLine();
 			String [] info= line.split(",");
-//			System.out.println(info[4]);
-			Double d=Double.parseDouble(info[4]);
-			reboundsAVLTree.insert(d, (Integer)i);
+			Double d=Double.parseDouble(info[6]);
+			stealRBTree.RBInsert(d, (Integer)i);
+//			Integer d=Integer.parseInt(info[3]);
+//			pointsABBTree.addAbb(d, (Integer)1);
 			
 			
 		}
@@ -192,9 +196,9 @@ public class FIBA {
 	}
 	public void serializar() throws IOException {
 		
-		FileOutputStream fout=new FileOutputStream("ArbolesSerializados/reboundsAVLTree.dat");
+		FileOutputStream fout=new FileOutputStream("ArbolesSerializados/stealRBTree.dat");
 		ObjectOutputStream obj= new ObjectOutputStream(fout);
-		obj.writeObject(reboundsAVLTree.getRoot());
+		obj.writeObject(locksRBTree.getRoot());
 		
 		obj.close();
 		fout.close();
@@ -232,9 +236,9 @@ public class FIBA {
 	public static void main(String[] args) throws IOException, ClassNotFoundException {
 		
 		FIBA fi= new FIBA();
-//		fi.cargarRebotes();
+		fi.cargarRebotes();
 //		fi.insertPoints(100, value);
-		fi.searchPointsRB(10.2);
+//		fi.searchPointsRB(10.2);
 		
 		
 	
