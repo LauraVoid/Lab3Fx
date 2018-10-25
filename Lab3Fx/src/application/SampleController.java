@@ -169,7 +169,7 @@ public class SampleController {
 		Double steal = Double.parseDouble(info);
 		Player found = null;
 		if (RdAVL.isSelected()) {
-
+            
 			found = fiba.searchStealAVL(steal);
 		} else if (RdRB.isSelected()) {
 			found = fiba.searchStealRB(steal);
@@ -188,10 +188,17 @@ public class SampleController {
 		Double rebounds = Double.parseDouble(info);
 		Player found = null;
 		if (RdAVL.isSelected()) {
-
+			long start = System.nanoTime(); 
 			found = fiba.searchReboundsAVL(rebounds);
+			long end = System.nanoTime(); 
+			long total=fiba.executionTime(start, end);
+			System.out.println(total+" milisegundos");
 		} else if (RdABB.isSelected()) {
+			long start = System.nanoTime(); 
 			found = fiba.searchReboundsABB(rebounds);
+			long end = System.nanoTime(); 
+			long total=fiba.executionTime(start, end);
+			System.out.println(total+" milisegundos");
 		}
 		// ABB
 
@@ -205,7 +212,7 @@ public class SampleController {
 		String info = TxtValorB.getText();
 		Double rebounds = Double.parseDouble(info);
 		Player found = null;
-
+        
 		found = fiba.searchLocksRB(rebounds);
 
 		String player = "Name " + found.getName() + " steal " + found.getSteal();
