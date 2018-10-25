@@ -81,10 +81,28 @@ public class SampleController {
 
 	@FXML
 	private Button butAddPlayer;
+	
+	   @FXML
+	    private RadioButton rdStealsDelete;
+
+	    @FXML
+	    private RadioButton rdReboundsDelete;
+
+	    @FXML
+	    private RadioButton rdLocksDelete;
+
+	    @FXML
+	    private RadioButton rdAssistsDelete;
+
+	    @FXML
+	    private TextField txtEliminar;
+
+	    @FXML
+	    private Button butEliminar;
 
 	@FXML
 	void butSearch(ActionEvent event) {
-
+ 
 		if (RdRobos.isSelected()) {
 
 			try {
@@ -153,6 +171,17 @@ public class SampleController {
 		RdRobos.setToggleGroup(g2);
 
 	}
+	
+	private void toggleGroup3() {
+		// TODO Auto-generated method stub
+		ToggleGroup g3 = new ToggleGroup();
+		rdStealsDelete.setToggleGroup(g3);
+		rdReboundsDelete.setToggleGroup(g3);
+		rdLocksDelete.setToggleGroup(g3);
+		rdAssistsDelete.setToggleGroup(g3);
+
+
+	}
 
 	public void initialize() {
 
@@ -164,6 +193,7 @@ public class SampleController {
 		}
 		toggleGroup1();
 		toggleGroup2();
+		toggleGroup3();
 	}
 
 	public String playerFoundInfoRobos() throws IOException {
@@ -263,5 +293,57 @@ public class SampleController {
 		RdRB.setDisable(false);
 
 	}
+	@FXML
+    void butEliminar(ActionEvent event) {
+		String info = txtEliminar.getText();
+		Double eliminar = Double.parseDouble(info);
+		if(rdAssistsDelete.isSelected()) {
+			fiba.getAssistsABBTree().deleteAbb(eliminar);
+			
+		}
+		else if(rdLocksDelete.isSelected()) {
+			
+			fiba.getRBLocksTree().RBDelete(eliminar);
+		}
+		else if(rdStealsDelete.isSelected()) {
+			//fiba.getStealAVLTree().remove(eliminar, value, root);
+			fiba.getStealRBTree().RBDelete(eliminar);
+		}
+		else if(rdReboundsDelete.isSelected()) {
+			fiba.getReboundsABBTree().deleteAbb(eliminar);
+		}
+		
+		
+
+    }
+	 @FXML
+	    void rdAssistsDelete(ActionEvent event) {
+
+	    }
+
+	  
+
+	    @FXML
+	    void rdLocksDelete(ActionEvent event) {
+
+	    }
+
+	   
+
+	    @FXML
+	    void rdReboundsDelete(ActionEvent event) {
+
+	    }
+
+	  
+
+	    @FXML
+	    void rdStealsDelete(ActionEvent event) {
+
+	    }
+
+
+
+    
 
 }
