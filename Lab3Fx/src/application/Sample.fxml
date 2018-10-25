@@ -80,11 +80,12 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Label layoutX="41.0" layoutY="31.0" text="Ingresar los rebotes del jugador">
+                        <Label layoutX="41.0" layoutY="31.0" text="Ingresar los robos del jugador a eliminar">
                            <font>
                               <Font size="16.0" />
                            </font>
                         </Label>
+                        <TextField layoutX="60.0" layoutY="70.0" prefHeight="50.0" prefWidth="248.0" />
                      </children></AnchorPane>
             </content>
           </Tab>
