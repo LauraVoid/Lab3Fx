@@ -45,11 +45,11 @@ public class FIBA {
 		assistsABBTree = new Abb<Double, Integer>();
 
 		deStealAVLTree();
-		deStealRBTree();
+	    deStealRBTree();
 //		deReboundsAVLTree();
 //		deLocksRBTree();
 //		deAssistsABBTree();
-		deReboundsABBTree();
+//		deReboundsABBTree();
 //		deAssistsABBTree();
 //		playerAmount = reboundsAVLTree.getAmountNode();
 

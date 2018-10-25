@@ -88,6 +88,7 @@ public class SampleController {
 		if (RdRobos.isSelected()) {
 
 			try {
+				labTimeValue.setText(" "); 
 				String info = playerFoundInfoRobos();
 				labFoundPlayer.setText(info);
 				System.out.println(info);
@@ -100,6 +101,7 @@ public class SampleController {
 		} else if (RdRebotes.isSelected()) {
 
 			try {
+				labTimeValue.setText(" "); 
 				String info = playerFoundInfoRebounds();
 				System.out.println(info);
 			} catch (Exception e) {
@@ -107,6 +109,7 @@ public class SampleController {
 			}
 		} else if (RdBloqueos.isSelected()) {
 			try {
+				labTimeValue.setText(" "); 
 				String info = playerFoundInfoLocks();
 				System.out.println(info);
 			} catch (IOException e) {
@@ -169,10 +172,17 @@ public class SampleController {
 		Double steal = Double.parseDouble(info);
 		Player found = null;
 		if (RdAVL.isSelected()) {
-            
+			long start = System.nanoTime(); 
 			found = fiba.searchStealAVL(steal);
+			long end = System.nanoTime(); 
+			long total=fiba.executionTime(start, end);
+			labTimeValue.setText(total+" AVL");
 		} else if (RdRB.isSelected()) {
+			long start = System.nanoTime(); 
 			found = fiba.searchStealRB(steal);
+			long end = System.nanoTime(); 
+			long total=fiba.executionTime(start, end);
+			labTimeValue.setText(total+" RB");
 		}
 
 		String player = "Nombre: " + found.getName() + " \n Edad: " + found.getEdad() + "\n Equipo: " + found.getTeam() + "\n Puntos:"
@@ -192,13 +202,13 @@ public class SampleController {
 			found = fiba.searchReboundsAVL(rebounds);
 			long end = System.nanoTime(); 
 			long total=fiba.executionTime(start, end);
-			System.out.println(total+" milisegundos");
+			labTimeValue.setText(total+" AVL");
 		} else if (RdABB.isSelected()) {
 			long start = System.nanoTime(); 
 			found = fiba.searchReboundsABB(rebounds);
 			long end = System.nanoTime(); 
 			long total=fiba.executionTime(start, end);
-			System.out.println(total+" milisegundos");
+			labTimeValue.setText(total+" ABB");
 		}
 		// ABB
 
@@ -208,13 +218,15 @@ public class SampleController {
 	}
 
 	public String playerFoundInfoLocks() throws IOException {
-
+		labTimeValue.setText(" "); 
 		String info = TxtValorB.getText();
 		Double rebounds = Double.parseDouble(info);
 		Player found = null;
-        
+		long start = System.nanoTime(); 
 		found = fiba.searchLocksRB(rebounds);
-
+		long end = System.nanoTime(); 
+		long total=fiba.executionTime(start, end);
+		labTimeValue.setText(total+" RB" );
 		String player = "Name " + found.getName() + " steal " + found.getSteal();
 		return player;
 
@@ -225,6 +237,7 @@ public class SampleController {
 
 		RdRB.setDisable(true);
 		RdAVL.setDisable(true);
+		RdABB.setDisable(false);
 
 	}
 
@@ -232,17 +245,22 @@ public class SampleController {
 	void rdRebotes(ActionEvent event) {
 
 		RdRB.setDisable(true);
+		RdAVL.setDisable(false);
+		RdABB.setDisable(false);
 	}
 
 	@FXML
 	void rdRobos(ActionEvent event) {
 		RdABB.setDisable(true);
+		RdAVL.setDisable(false);
+		RdRB.setDisable(false);
 	}
 
 	@FXML
 	void rdBloqueos(ActionEvent event) {
 		RdAVL.setDisable(true);
 		RdABB.setDisable(true);
+		RdRB.setDisable(false);
 
 	}
 
