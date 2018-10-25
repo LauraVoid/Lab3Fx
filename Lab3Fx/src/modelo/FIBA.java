@@ -96,7 +96,7 @@ public class FIBA {
 		return searchTxtPlayer(num + "");
 	}
 
-	public Player searchReboundsABB(Double key) throws IOException {
+	public Player searchReboundsABB(Double key) throws IOException, Exception {
 
 		System.out.println(reboundsABBTree.searchAbb(key));
 //		System.out.println(reboundsABBTree.searchAbb(key).getDate());

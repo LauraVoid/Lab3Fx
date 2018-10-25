@@ -95,7 +95,6 @@ public class SampleController {
 
 				JOptionPane.showMessageDialog(null, "Jugador no encontrado");
 				// TODO Auto-generated catch block
-//				e.printStackTrace();
 			}
 
 		} else if (RdRebotes.isSelected()) {
@@ -103,9 +102,8 @@ public class SampleController {
 			try {
 				String info = playerFoundInfoRebounds();
 				System.out.println(info);
-			} catch (IOException e) {
+			} catch (Exception e) {
 				JOptionPane.showMessageDialog(null, "Jugador no encontrado");
-				e.printStackTrace();
 			}
 		} else if (RdBloqueos.isSelected()) {
 			try {
@@ -113,7 +111,6 @@ public class SampleController {
 				System.out.println(info);
 			} catch (IOException e) {
 				JOptionPane.showMessageDialog(null, "Jugador no encontrado");
-				e.printStackTrace();
 			}
 
 		}
@@ -185,7 +182,7 @@ public class SampleController {
 
 	}
 
-	public String playerFoundInfoRebounds() throws IOException {
+	public String playerFoundInfoRebounds() throws Exception {
 
 		String info = TxtValorB.getText();
 		Double rebounds = Double.parseDouble(info);
