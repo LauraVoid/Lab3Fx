@@ -22,7 +22,7 @@ class FIBATest {
 	private Integer player6;
 	
 	public void setUp1() throws ClassNotFoundException, IOException {
-		fiba=new FIBA();
+		fiba=new FIBA("NBA");
 		player1=1;
 		player2=2;
 		player3=3;
@@ -33,7 +33,7 @@ class FIBATest {
 	}
 	
 	public void setUp2() throws ClassNotFoundException, IOException {
-		fiba=new FIBA();
+		fiba=new FIBA("NBA");
 		player1=1;
 		player2=2;
 		player3=3;
@@ -67,7 +67,7 @@ class FIBATest {
 		setUp2();
 	
 		fiba.deleteLocks(102.0);
-		assertEquals(fiba.getRBLocksTree().getRoot().getRight().getValue(),player1);
+		assertEquals(fiba.getRBLocksTree().getRoot().getRight().getValue(),player4);
 	}
 	
 	@Test

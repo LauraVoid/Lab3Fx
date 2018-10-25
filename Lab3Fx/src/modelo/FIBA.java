@@ -35,6 +35,8 @@ public class FIBA {
 	private BufferedWriter bw;
 	private Integer playerAmount;
 
+	
+	//Constructor con todos los arboles deseralizados
 	public FIBA() throws ClassNotFoundException, IOException {
 
 		reboundsAVLTree = new AVLTree<Double, Integer>();
@@ -44,17 +46,32 @@ public class FIBA {
 		reboundsABBTree = new Abb<Double, Integer>();
 		assistsABBTree = new Abb<Double, Integer>();
 
-//		deStealAVLTree();
-//    deStealRBTree();
-//		deReboundsAVLTree();
+		deStealAVLTree();
+        deStealRBTree();
+		deReboundsAVLTree();
     	deLocksRBTree();
-//		deAssistsABBTree();
-//		deReboundsABBTree();
-//		deAssistsABBTree();
+		deAssistsABBTree();
+		deReboundsABBTree();
+		deAssistsABBTree();
 		playerAmount = 199999;
 
 	}
+	
+	//Constructor para pruebas
+	public FIBA(String nom) throws ClassNotFoundException, IOException {
 
+		reboundsAVLTree = new AVLTree<Double, Integer>();
+		stealAVLTree = new AVLTree<Double, Integer>();
+		locksRBTree = new RBTree<Double, Integer>();
+		stealRBTree = new RBTree<Double, Integer>();
+		reboundsABBTree = new Abb<Double, Integer>();
+		assistsABBTree = new Abb<Double, Integer>();
+
+
+	}
+
+	
+	
 	public int getPlayerAmount() {
 		return playerAmount;
 	}

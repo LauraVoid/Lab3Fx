@@ -99,6 +99,9 @@ public class SampleController {
 
 	@FXML
 	private Button butEliminar;
+	
+    @FXML
+    private Label labelEliminar;
 
 	@FXML
 	void butSearch(ActionEvent event) {
@@ -308,20 +311,31 @@ public class SampleController {
 		Double eliminar = Double.parseDouble(info);
 		if (rdAssistsDelete.isSelected()) {
 			fiba.getAssistsABBTree().deleteAbb(eliminar);
-
+			JOptionPane.showMessageDialog(null, "Jugador eliminado correctamente");
 		} else if (rdLocksDelete.isSelected()) {
 
 			fiba.getRBLocksTree().RBDelete(eliminar);
+			JOptionPane.showMessageDialog(null, "Jugador eliminado correctamente");
 		} else if (rdStealsDelete.isSelected()) {
 			fiba.deleteStealAVL(eliminar);
-//			System.out.println("AVL DELETE");
 			fiba.getStealRBTree().RBDelete(eliminar);
+			JOptionPane.showMessageDialog(null, "Jugador eliminado correctamente");
 		} else if (rdReboundsDelete.isSelected()) {
 			fiba.getReboundsABBTree().deleteAbb(eliminar);
 			fiba.deleteReboundsAVL(eliminar);
-		}
+			JOptionPane.showMessageDialog(null, "Jugador eliminado correctamente");
 
+			 }
+		
 	}
+	
+	public String player(Player found) {
+		String player = "Nombre: " + found.getName() + " \n Edad: " + found.getEdad() + "\n Equipo: " + found.getTeam()
+		+ "\n Puntos:" + found.getPoints() + "\n Rebotes:" + found.getRebounds() + "\n Asistencias:"
+		+ found.getAssists() + "\n Robos:" + found.getSteal() + "\n Bloqueos: " + found.getLocks();
+		return player;
+	}
+	
 
 	@FXML
 	void rdAssistsDelete(ActionEvent event) {
