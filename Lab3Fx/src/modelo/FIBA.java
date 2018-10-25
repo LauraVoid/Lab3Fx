@@ -44,8 +44,8 @@ public class FIBA {
 		reboundsABBTree = new Abb<Double, Integer>();
 		assistsABBTree = new Abb<Double, Integer>();
 
-		deStealAVLTree();
-	    deStealRBTree();
+//		deStealAVLTree();
+//	    deStealRBTree();
 //		deReboundsAVLTree();
 //		deLocksRBTree();
 //		deAssistsABBTree();
@@ -54,70 +54,54 @@ public class FIBA {
 		playerAmount = 199999;
 
 	}
-	
-
 
 	public int getPlayerAmount() {
 		return playerAmount;
 	}
 
-
-
 	public void setPlayerAmount(int playerAmount) {
 		this.playerAmount = playerAmount;
 	}
-
-
 
 	public IAVLTree<Double, Integer> getReboundsAVLTree() {
 		return reboundsAVLTree;
 	}
 
-
 	public void setReboundsAVLTree(IAVLTree<Double, Integer> reboundsAVLTree) {
 		this.reboundsAVLTree = reboundsAVLTree;
 	}
-
 
 	public IAVLTree<Double, Integer> getStealAVLTree() {
 		return stealAVLTree;
 	}
 
-
 	public void setStealAVLTree(IAVLTree<Double, Integer> stealAVLTree) {
 		this.stealAVLTree = stealAVLTree;
 	}
-
 
 	public IRBTree<Double, Integer> getLocksRBTree() {
 		return locksRBTree;
 	}
 
-
 	public void setLocksRBTree(IRBTree<Double, Integer> locksRBTree) {
 		this.locksRBTree = locksRBTree;
 	}
-
 
 	public Abb<Double, Integer> getReboundsABBTree() {
 		return reboundsABBTree;
 	}
 
-
 	public void setReboundsABBTree(Abb<Double, Integer> reboundsABBTree) {
 		this.reboundsABBTree = reboundsABBTree;
 	}
-
 
 	public Abb<Double, Integer> getAssistsABBTree() {
 		return assistsABBTree;
 	}
 
-
 	public void setAssistsABBTree(Abb<Double, Integer> assistsABBTree) {
 		this.assistsABBTree = assistsABBTree;
 	}
-
 
 	public IRBTree<Double, Integer> getRBLocksTree() {
 		return locksRBTree;
@@ -141,13 +125,13 @@ public class FIBA {
 
 	public void deleteStealAVL(double key) {
 
-//		Integer num = stealAVLTree.search(key, stealAVLTree.getRoot()).getValue();
-		stealAVLTree.remove(key,stealAVLTree.getRoot());
+
+		stealAVLTree.remove(key, stealAVLTree.getRoot());
 	}
+
 	public void deleteReboundsAVL(double key) {
 
-//		Integer num = stealAVLTree.search(key, stealAVLTree.getRoot()).getValue();
-		reboundsAVLTree.remove(key,stealAVLTree.getRoot());
+		reboundsAVLTree.remove(key, reboundsAVLTree.getRoot());
 	}
 
 	public void insertStealAVL(Double key, Integer value) {
@@ -158,7 +142,7 @@ public class FIBA {
 		locksRBTree.RBDelete(key);
 	}
 
-	public Player searchReboundsAVL(Double key) throws IOException {
+	public Player searchReboundsAVL(Double key) throws Exception {
 
 		Integer num = reboundsAVLTree.search(key, reboundsAVLTree.getRoot()).getValue();
 
@@ -203,13 +187,6 @@ public class FIBA {
 		return searchTxtPlayer(num + "");
 	}
 
-//	public Player searchPointsRB(Double key) throws IOException {
-//
-//		System.out.println(key+ " Valor a buscar");
-//		Integer num = pointsRBTree.RBSearch(pointsRBTree.getRoot(),key).getValue();
-//		System.out.println(num +" NUM");
-//		return searchTxtPlayer(num + "");
-//	}
 
 	public Player searchTxtPlayer(String value) throws IOException {
 
@@ -230,21 +207,13 @@ public class FIBA {
 
 	public void addNewPlayer(Player newPlayer) throws IOException {
 
-		// reboundsAVLTree.amountNodes(reboundsAVLTree.getRoot());
-		// int index = reboundsAVLTree.getAmountNode() + 1;
-//		int index = locksRBTree.getAmountNodes() - 1;
-		// reboundsAVLTree.insert(newPlayer.getRebounds(), index);
-		// stealAVLTree.insert(newPlayer.getSteal(), index);
-		 writeNewPlayer(newPlayer, playerAmount);
+		writeNewPlayer(newPlayer, playerAmount);
 		locksRBTree.RBInsert(newPlayer.getLocks(), playerAmount);
 		stealRBTree.RBInsert(newPlayer.getSteal(), playerAmount);
 		stealAVLTree.insert(newPlayer.getSteal(), playerAmount);
 		reboundsAVLTree.insert(newPlayer.getRebounds(), playerAmount);
 		reboundsABBTree.addAbb(newPlayer.getRebounds(), playerAmount);
 		assistsABBTree.addAbb(newPlayer.getAssists(), playerAmount);
-		
-
-		
 
 	}
 
@@ -263,8 +232,6 @@ public class FIBA {
 	public long executionTime(long startTime, long endTime) {
 		return endTime - startTime;
 	}
-	
-	
 
 	public void cargarRebotes() throws IOException {
 
@@ -275,11 +242,7 @@ public class FIBA {
 			br = new BufferedReader(fr);
 			String line = br.readLine();
 			String[] info = line.split(",");
-//			System.out.println(info[6]+" VALOR STEAL");
 			double d = Double.parseDouble(info[5]);
-//			System.out.println(d);
-//			System.out.println(i);
-//			System.out.println(stealRBTree.getRoot().getKey());
 			assistsABBTree.addAbb(d, (Integer) i);
 //			Integer d=Integer.parseInt(info[3]);
 //			pointsABBTree.addAbb(d, (Integer)1);
@@ -332,7 +295,7 @@ public class FIBA {
 		ObjectInputStream obj = new ObjectInputStream(fi);
 
 		AVLNode<Double, Integer> newRoot = (AVLNode<Double, Integer>) obj.readObject();
-
+		System.out.println(newRoot.getKey() + "nueva root");
 		reboundsAVLTree.setRoot(newRoot);
 
 		obj.close();

@@ -81,36 +81,35 @@ public class SampleController {
 
 	@FXML
 	private Button butAddPlayer;
-	
-	   @FXML
-	    private RadioButton rdStealsDelete;
 
-	    @FXML
-	    private RadioButton rdReboundsDelete;
+	@FXML
+	private RadioButton rdStealsDelete;
 
-	    @FXML
-	    private RadioButton rdLocksDelete;
+	@FXML
+	private RadioButton rdReboundsDelete;
 
-	    @FXML
-	    private RadioButton rdAssistsDelete;
+	@FXML
+	private RadioButton rdLocksDelete;
 
-	    @FXML
-	    private TextField txtEliminar;
+	@FXML
+	private RadioButton rdAssistsDelete;
 
-	    @FXML
-	    private Button butEliminar;
+	@FXML
+	private TextField txtEliminar;
+
+	@FXML
+	private Button butEliminar;
 
 	@FXML
 	void butSearch(ActionEvent event) {
- 
+
 		if (RdRobos.isSelected()) {
 
 			try {
-				labTimeValue.setText(" "); 
+				labTimeValue.setText(" ");
 				String info = playerFoundInfoRobos();
 				labFoundPlayer.setText(info);
-				System.out.println(info);
-			} catch (IOException e ) {
+			} catch (Exception e) {
 
 				JOptionPane.showMessageDialog(null, "Jugador no encontrado");
 				// TODO Auto-generated catch block
@@ -119,18 +118,18 @@ public class SampleController {
 		} else if (RdRebotes.isSelected()) {
 
 			try {
-				labTimeValue.setText(" "); 
+				labTimeValue.setText(" ");
 				String info = playerFoundInfoRebounds();
-				System.out.println(info);
+				labFoundPlayer.setText(info);
 			} catch (Exception e) {
 				JOptionPane.showMessageDialog(null, "Jugador no encontrado");
 			}
 		} else if (RdBloqueos.isSelected()) {
 			try {
-				labTimeValue.setText(" "); 
+				labTimeValue.setText(" ");
 				String info = playerFoundInfoLocks();
-				System.out.println(info);
-			} catch (IOException e) {
+				labFoundPlayer.setText(info);
+			} catch (Exception e) {
 				JOptionPane.showMessageDialog(null, "Jugador no encontrado");
 			}
 
@@ -176,7 +175,7 @@ public class SampleController {
 		RdRobos.setToggleGroup(g2);
 
 	}
-	
+
 	private void toggleGroup3() {
 		// TODO Auto-generated method stub
 		ToggleGroup g3 = new ToggleGroup();
@@ -184,7 +183,6 @@ public class SampleController {
 		rdReboundsDelete.setToggleGroup(g3);
 		rdLocksDelete.setToggleGroup(g3);
 		rdAssistsDelete.setToggleGroup(g3);
-
 
 	}
 
@@ -207,22 +205,22 @@ public class SampleController {
 		Double steal = Double.parseDouble(info);
 		Player found = null;
 		if (RdAVL.isSelected()) {
-			long start = System.nanoTime(); 
+			long start = System.nanoTime();
 			found = fiba.searchStealAVL(steal);
-			long end = System.nanoTime(); 
-			long total=fiba.executionTime(start, end);
-			labTimeValue.setText(total+" AVL");
+			long end = System.nanoTime();
+			long total = fiba.executionTime(start, end);
+			labTimeValue.setText(total + " AVL");
 		} else if (RdRB.isSelected()) {
-			long start = System.nanoTime(); 
+			long start = System.nanoTime();
 			found = fiba.searchStealRB(steal);
-			long end = System.nanoTime(); 
-			long total=fiba.executionTime(start, end);
-			labTimeValue.setText(total+" RB");
+			long end = System.nanoTime();
+			long total = fiba.executionTime(start, end);
+			labTimeValue.setText(total + " RB");
 		}
 
-		String player = "Nombre: " + found.getName() + " \n Edad: " + found.getEdad() + "\n Equipo: " + found.getTeam() + "\n Puntos:"
-				+ found.getPoints() + "\n Rebotes:" + found.getRebounds() + "\n Asistencias:" + found.getAssists() + "\n Robos:" + found.getSteal()
-				+ "\n Bloqueos: " + found.getLocks();
+		String player = "Nombre: " + found.getName() + " \n Edad: " + found.getEdad() + "\n Equipo: " + found.getTeam()
+				+ "\n Puntos:" + found.getPoints() + "\n Rebotes:" + found.getRebounds() + "\n Asistencias:"
+				+ found.getAssists() + "\n Robos:" + found.getSteal() + "\n Bloqueos: " + found.getLocks();
 		return player;
 
 	}
@@ -233,42 +231,41 @@ public class SampleController {
 		Double rebounds = Double.parseDouble(info);
 		Player found = null;
 		if (RdAVL.isSelected()) {
-			long start = System.nanoTime(); 
+			long start = System.nanoTime();
 			found = fiba.searchReboundsAVL(rebounds);
-			long end = System.nanoTime(); 
-			long total=fiba.executionTime(start, end);
-			labTimeValue.setText(total+" AVL");
+			long end = System.nanoTime();
+			long total = fiba.executionTime(start, end);
+			labTimeValue.setText(total + " AVL");
 		} else if (RdABB.isSelected()) {
-			long start = System.nanoTime(); 
+			long start = System.nanoTime();
 			found = fiba.searchReboundsABB(rebounds);
-			long end = System.nanoTime(); 
-			long total=fiba.executionTime(start, end);
-			labTimeValue.setText(total+" ABB");
+			long end = System.nanoTime();
+			long total = fiba.executionTime(start, end);
+			labTimeValue.setText(total + " ABB");
 		}
 		// ABB
 
-
-		String player = "Nombre: " + found.getName() + " \n Edad: " + found.getEdad() + "\n Equipo: " + found.getTeam() + "\n Puntos:"
-				+ found.getPoints() + "\n Rebotes:" + found.getRebounds() + "\n Asistencias:" + found.getAssists() + "\n Robos:" + found.getSteal()
-				+ "\n Bloqueos: " + found.getLocks();
+		String player = "Nombre: " + found.getName() + " \n Edad: " + found.getEdad() + "\n Equipo: " + found.getTeam()
+				+ "\n Puntos:" + found.getPoints() + "\n Rebotes:" + found.getRebounds() + "\n Asistencias:"
+				+ found.getAssists() + "\n Robos:" + found.getSteal() + "\n Bloqueos: " + found.getLocks();
 		return player;
 
 	}
 
 	public String playerFoundInfoLocks() throws IOException {
-		labTimeValue.setText(" "); 
+		labTimeValue.setText(" ");
 		String info = TxtValorB.getText();
 		Double rebounds = Double.parseDouble(info);
 		Player found = null;
-		long start = System.nanoTime(); 
+		long start = System.nanoTime();
 		found = fiba.searchLocksRB(rebounds);
-		long end = System.nanoTime(); 
-		long total=fiba.executionTime(start, end);
-		labTimeValue.setText(total+" RB" );
+		long end = System.nanoTime();
+		long total = fiba.executionTime(start, end);
+		labTimeValue.setText(total + " RB");
 
-		String player = "Nombre: " + found.getName() + " \n Edad: " + found.getEdad() + "\n Equipo: " + found.getTeam() + "\n Puntos:"
-				+ found.getPoints() + "\n Rebotes:" + found.getRebounds() + "\n Asistencias:" + found.getAssists() + "\n Robos:" + found.getSteal()
-				+ "\n Bloqueos: " + found.getLocks();
+		String player = "Nombre: " + found.getName() + " \n Edad: " + found.getEdad() + "\n Equipo: " + found.getTeam()
+				+ "\n Puntos:" + found.getPoints() + "\n Rebotes:" + found.getRebounds() + "\n Asistencias:"
+				+ found.getAssists() + "\n Robos:" + found.getSteal() + "\n Bloqueos: " + found.getLocks();
 		return player;
 
 	}
@@ -304,58 +301,46 @@ public class SampleController {
 		RdRB.setDisable(false);
 
 	}
+
 	@FXML
-    void butEliminar(ActionEvent event) {
+	void butEliminar(ActionEvent event) {
 		String info = txtEliminar.getText();
 		Double eliminar = Double.parseDouble(info);
-		if(rdAssistsDelete.isSelected()) {
+		if (rdAssistsDelete.isSelected()) {
 			fiba.getAssistsABBTree().deleteAbb(eliminar);
-			
-		}
-		else if(rdLocksDelete.isSelected()) {
-			
+
+		} else if (rdLocksDelete.isSelected()) {
+
 			fiba.getRBLocksTree().RBDelete(eliminar);
-		}
-		else if(rdStealsDelete.isSelected()) {
+		} else if (rdStealsDelete.isSelected()) {
 			fiba.deleteStealAVL(eliminar);
-			fiba.getStealRBTree().RBDelete(eliminar);
-		}
-		else if(rdReboundsDelete.isSelected()) {
+			System.out.println("AVL DELETE");
+//			fiba.getStealRBTree().RBDelete(eliminar);
+		} else if (rdReboundsDelete.isSelected()) {
 			fiba.getReboundsABBTree().deleteAbb(eliminar);
 			fiba.deleteReboundsAVL(eliminar);
 		}
-		
-		
 
-    }
-	 @FXML
-	    void rdAssistsDelete(ActionEvent event) {
+	}
 
-	    }
+	@FXML
+	void rdAssistsDelete(ActionEvent event) {
 
-	  
+	}
 
-	    @FXML
-	    void rdLocksDelete(ActionEvent event) {
+	@FXML
+	void rdLocksDelete(ActionEvent event) {
 
-	    }
+	}
 
-	   
+	@FXML
+	void rdReboundsDelete(ActionEvent event) {
 
-	    @FXML
-	    void rdReboundsDelete(ActionEvent event) {
+	}
 
-	    }
+	@FXML
+	void rdStealsDelete(ActionEvent event) {
 
-	  
-
-	    @FXML
-	    void rdStealsDelete(ActionEvent event) {
-
-	    }
-
-
-
-    
+	}
 
 }
