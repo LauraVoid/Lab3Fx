@@ -132,7 +132,7 @@ public class RBTree<K, V> implements IRBTree<K, V> {
 	}
 
 	public RBNode<K, V> RBMaximum(RBNode<K, V> maximum) {
-		while (!maximum.getRight().equals(nil)) {
+		while (maximum.getRight().getKey()!=null) {
 			maximum = maximum.getRight();
 		}
 		return maximum;
@@ -143,7 +143,7 @@ public class RBTree<K, V> implements IRBTree<K, V> {
 		System.out.println(minimum.getLeft().getKey()+ "  MINIMO");
 		System.out.println(" huertas bimba");
 		
-		while (!minimum.getRight().equals(nil)) {
+		while (minimum.getLeft().getKey()!=null) {
 			System.out.println(minimum.getLeft().getColor()+ " NULLPOINTER");
 			minimum = minimum.getLeft();
 		}

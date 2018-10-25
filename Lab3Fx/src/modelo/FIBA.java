@@ -44,10 +44,10 @@ public class FIBA {
 		reboundsABBTree = new Abb<Double, Integer>();
 		assistsABBTree = new Abb<Double, Integer>();
 
-		deStealAVLTree();
-    deStealRBTree();
+//		deStealAVLTree();
+//    deStealRBTree();
 //		deReboundsAVLTree();
-	//	deLocksRBTree();
+    	deLocksRBTree();
 //		deAssistsABBTree();
 //		deReboundsABBTree();
 //		deAssistsABBTree();
