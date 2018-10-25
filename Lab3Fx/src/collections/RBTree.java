@@ -354,7 +354,7 @@ public class RBTree<K, V> implements IRBTree<K, V> {
 
 	public static void main(String[] args) {
 		IRBTree<Double, Integer> rb = new RBTree<Double, Integer>();
-		rb.RBInsert(35.75075961202617, 9);
+//		rb.RBInsert(35.75075961202617, 9);
 //		rb.RBInsert(7.0, "player2");
 //		rb.RBInsert(12.0, "player3");
 //		rb.RBInsert(6.0, "player4");
