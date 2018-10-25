@@ -253,7 +253,7 @@ public class RBTree<K, V> implements IRBTree<K, V> {
 		if ((deleted.getLeft() == nil) || deleted.getRight() == nil) {
 			y = deleted;
 		} else {
-			y = RBPredecessor(deleted);
+			y = RBSuccessor(deleted);
 		}
 		if (y.getLeft() != nil) {
 			x = y.getLeft();
@@ -354,22 +354,31 @@ public class RBTree<K, V> implements IRBTree<K, V> {
 
 	public static void main(String[] args) {
 		IRBTree<Double, Integer> rb = new RBTree<Double, Integer>();
-//		rb.RBInsert(35.75075961202617, 9);
-//		rb.RBInsert(7.0, "player2");
-//		rb.RBInsert(12.0, "player3");
-//		rb.RBInsert(6.0, "player4");
-//		rb.RBInsert(7.5, "player5");
-//		rb.RBInsert(10.0, "player6");
-//		rb.RBInsert(14.0, "player7");
-//		rb.RBInsert(13.0, "player8");
-//		rb.RBInsert(15.0, "player9");
+     	rb.RBInsert(35.75075961202617, 9);
+		rb.RBInsert(7.0, 32);
+		rb.RBInsert(12.9098, 2);
+		rb.RBInsert(6.0, 5);
+		rb.RBInsert(7.5, 88);
+		rb.RBInsert(10.0, 2);
+		rb.RBInsert(14.0, 1);
+		rb.RBInsert(13.0, 44);
+		rb.RBInsert(15.0, 5);
+	   	rb.RBInsert(35.4, 9);
+			rb.RBInsert(9.0, 32);
+			rb.RBInsert(12.1, 2);
+			rb.RBInsert(6.3, 5);
+			rb.RBInsert(7.9, 88);
+			rb.RBInsert(10.33, 2);
+			rb.RBInsert(14.7, 1);
+			rb.RBInsert(13.976, 44);
+			rb.RBInsert(15.122, 5);
 //		rb.RBInsert(100.0, "player1");
 //		rb.RBInsert(92.0, "player2");
 //		rb.RBInsert(93.0, "player3");
 //		rb.RBInsert(105.0, "player4");
 //		rb.RBInsert(102.0, "player5");
 //		rb.RBInsert(91.0, "player6");		
-//		rb.RBDelete(102.0);
+		rb.RBDelete(35.4);
 //		rb.preorder(rb.getRoot());
 //		System.out.println(rb.getAmountNodes());
 //	    System.out.println(rb.RBSearch(rb.getRoot(),13.0).getValue());

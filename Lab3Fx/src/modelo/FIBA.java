@@ -45,9 +45,9 @@ public class FIBA {
 		assistsABBTree = new Abb<Double, Integer>();
 
 //		deStealAVLTree();
-//	    deStealRBTree();
+    deStealRBTree();
 //		deReboundsAVLTree();
-//		deLocksRBTree();
+	//	deLocksRBTree();
 //		deAssistsABBTree();
 //		deReboundsABBTree();
 //		deAssistsABBTree();
@@ -344,12 +344,13 @@ public class FIBA {
 
 	public static void main(String[] args) throws IOException, ClassNotFoundException {
 
-//		FIBA fi= new FIBA();
+		FIBA fi= new FIBA();
 //		fi.cargarRebotes();
 //		fi.getStealRBTree().RBInsert(35.75075961202617, 1);
 //		System.out.println(fi.getStealRBTree().getRoot().getKey());
 //		fi.insertPoints(100, value);
 //		fi.searchPointsRB(10.2);
+		fi.getStealRBTree().RBDelete(30.001977365288035);
 
 	}
 
