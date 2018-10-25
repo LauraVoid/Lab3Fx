@@ -314,8 +314,8 @@ public class SampleController {
 			fiba.getRBLocksTree().RBDelete(eliminar);
 		} else if (rdStealsDelete.isSelected()) {
 			fiba.deleteStealAVL(eliminar);
-			System.out.println("AVL DELETE");
-//			fiba.getStealRBTree().RBDelete(eliminar);
+//			System.out.println("AVL DELETE");
+			fiba.getStealRBTree().RBDelete(eliminar);
 		} else if (rdReboundsDelete.isSelected()) {
 			fiba.getReboundsABBTree().deleteAbb(eliminar);
 			fiba.deleteReboundsAVL(eliminar);

@@ -139,7 +139,12 @@ public class RBTree<K, V> implements IRBTree<K, V> {
 	}
 
 	public RBNode<K, V> RBMinimum(RBNode<K, V> minimum) {
-		while (minimum.getLeft() != nil) {
+		
+		System.out.println(minimum.getLeft().getKey()+ "  MINIMO");
+		System.out.println(" huertas bimba");
+		
+		while (minimum.getLeft().getKey() != null) {
+			System.out.println(minimum.getLeft().getColor()+ " NULLPOINTER");
 			minimum = minimum.getLeft();
 		}
 		return minimum;
@@ -151,7 +156,9 @@ public class RBTree<K, V> implements IRBTree<K, V> {
 			return RBMinimum(successor.getRight());
 
 		}
+		System.out.println("www");
 		y = successor.getFather();
+		
 
 		while ((y != nil) && (successor == y.getRight())) {
 			successor = y;
@@ -253,7 +260,9 @@ public class RBTree<K, V> implements IRBTree<K, V> {
 		if ((deleted.getLeft() == nil) || deleted.getRight() == nil) {
 			y = deleted;
 		} else {
-			y = RBSuccessor(deleted);
+			System.out.println(deleted.getKey()+ " DELETED");
+			y = RBSuccessor(deleted );
+			
 		}
 		if (y.getLeft() != nil) {
 			x = y.getLeft();
