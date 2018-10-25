@@ -54,6 +54,57 @@ public class FIBA {
 //		playerAmount = reboundsAVLTree.getAmountNode();
 
 	}
+	
+
+	public IAVLTree<Double, Integer> getReboundsAVLTree() {
+		return reboundsAVLTree;
+	}
+
+
+	public void setReboundsAVLTree(IAVLTree<Double, Integer> reboundsAVLTree) {
+		this.reboundsAVLTree = reboundsAVLTree;
+	}
+
+
+	public IAVLTree<Double, Integer> getStealAVLTree() {
+		return stealAVLTree;
+	}
+
+
+	public void setStealAVLTree(IAVLTree<Double, Integer> stealAVLTree) {
+		this.stealAVLTree = stealAVLTree;
+	}
+
+
+	public IRBTree<Double, Integer> getLocksRBTree() {
+		return locksRBTree;
+	}
+
+
+	public void setLocksRBTree(IRBTree<Double, Integer> locksRBTree) {
+		this.locksRBTree = locksRBTree;
+	}
+
+
+	public Abb<Double, Integer> getReboundsABBTree() {
+		return reboundsABBTree;
+	}
+
+
+	public void setReboundsABBTree(Abb<Double, Integer> reboundsABBTree) {
+		this.reboundsABBTree = reboundsABBTree;
+	}
+
+
+	public Abb<Double, Integer> getAssistsABBTree() {
+		return assistsABBTree;
+	}
+
+
+	public void setAssistsABBTree(Abb<Double, Integer> assistsABBTree) {
+		this.assistsABBTree = assistsABBTree;
+	}
+
 
 	public IRBTree<Double, Integer> getRBLocksTree() {
 		return locksRBTree;
