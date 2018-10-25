@@ -73,8 +73,8 @@ class FIBATest {
 	@Test
 	public void searchTestRB() throws ClassNotFoundException, IOException {
 		setUp2();
-		assertEquals(fiba.getRBLocksTree().getRoot().getRight().getValue(),fiba.searchLocksRB(102.0));
-		assertEquals(fiba.getRBLocksTree().getRoot().getValue(),fiba.searchLocksRB(93.0));
+		
+		assertEquals(fiba.getRBLocksTree().RBSearch(fiba.getRBLocksTree().getRoot(), 92.0).getValue(),player2);
 	}
 	
 	@Test

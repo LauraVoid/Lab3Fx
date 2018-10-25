@@ -140,11 +140,7 @@ public class RBTree<K, V> implements IRBTree<K, V> {
 
 	public RBNode<K, V> RBMinimum(RBNode<K, V> minimum) {
 		
-		System.out.println(minimum.getLeft().getKey()+ "  MINIMO");
-		System.out.println(" huertas bimba");
-		
 		while (minimum.getLeft().getKey()!=null) {
-			System.out.println(minimum.getLeft().getColor()+ " NULLPOINTER");
 			minimum = minimum.getLeft();
 		}
 		return minimum;
@@ -156,7 +152,6 @@ public class RBTree<K, V> implements IRBTree<K, V> {
 			return RBMinimum(successor.getRight());
 
 		}
-		System.out.println("www");
 		y = successor.getFather();
 		
 
@@ -361,71 +356,8 @@ public class RBTree<K, V> implements IRBTree<K, V> {
 		}
 	}
 
-	public static void main(String[] args) {
-		IRBTree<Double, Integer> rb = new RBTree<Double, Integer>();
-     	rb.RBInsert(35.75075961202617, 9);
-		rb.RBInsert(7.0, 32);
-		rb.RBInsert(12.9098, 2);
-		rb.RBInsert(6.0, 5);
-		rb.RBInsert(7.5, 88);
-		rb.RBInsert(10.0, 2);
-		rb.RBInsert(14.0, 1);
-		rb.RBInsert(13.0, 44);
-		rb.RBInsert(15.0, 5);
-	   	rb.RBInsert(35.4, 9);
-			rb.RBInsert(9.0, 32);
-			rb.RBInsert(12.1, 2);
-			rb.RBInsert(6.3, 5);
-			rb.RBInsert(7.9, 88);
-			rb.RBInsert(10.33, 2);
-			rb.RBInsert(14.7, 1);
-			rb.RBInsert(13.976, 44);
-			rb.RBInsert(15.122, 5);
-//		rb.RBInsert(100.0, "player1");
-//		rb.RBInsert(92.0, "player2");
-//		rb.RBInsert(93.0, "player3");
-//		rb.RBInsert(105.0, "player4");
-//		rb.RBInsert(102.0, "player5");
-//		rb.RBInsert(91.0, "player6");		
-		rb.RBDelete(35.4);
-//		rb.preorder(rb.getRoot());
-//		System.out.println(rb.getAmountNodes());
-//	    System.out.println(rb.RBSearch(rb.getRoot(),13.0).getValue());
-		System.out.println(rb.getRoot().getKey());
-		System.out.println(rb.getRoot().getValue());
-//		System.out.println(rb.getRoot().getLeft().getKey());
-//		System.out.println(rb.getRoot().getRight().getKey());
-//		System.out.println(rb.getRoot().getLeft().getLeft().getKey());
-//		System.out.println(rb.getRoot().getLeft().getRight().getKey());
-//		System.out.println(rb.getRoot().getRight().getLeft().getKey());
-//		System.out.println(rb.getRoot().getRight().getLeft().getRight().getKey());
-//		System.out.println(rb.getRoot().getRight().getLeft().getLeft().getKey());
-//		System.out.println(rb.getRoot().getRight().getRight().getKey());
-//		System.out.println(rb.getRoot().getRight().getRight().getLeft().getKey());
-//
-//		
-//		System.out.println();
-//		System.out.println(rb.getRoot().getColor());
-//		System.out.println(rb.getRoot().getLeft().getColor());
-//		System.out.println(rb.getRoot().getRight().getColor());
-//		System.out.println(rb.getRoot().getRight().getRight().getColor());
-//		rb.RBDelete(93);
-//		System.out.println(rb.RBDelete(102).getValue());
-//		System.out.println(rb.getRoot().getKey());
-//		System.out.println(rb.getRoot().getLeft().getKey());
-//		System.out.println(rb.getRoot().getRight().getKey());
-//		System.out.println(rb.getRoot().getRight().getRight().getKey());
-//		
-//		System.out.println(rb.getRoot().getLeft().getLeft().getKey());
-//		System.out.println();
-//		System.out.println(rb.getRoot().getColor());
-//		System.out.println(rb.getRoot().getLeft().getColor());
-//		System.out.println(rb.getRoot().getRight().getColor());
-//		System.out.println(rb.getRoot().getRight().getRight().getColor());
-//		System.out.println(rb.getRoot().getLeft().getLeft().getColor());
-//	}	
-//	}
+	
 
-	}
+	
 
 }
