@@ -24,11 +24,11 @@ public class FIBA {
 
 	private IAVLTree<Double, Integer> reboundsAVLTree;
 	private IAVLTree<Double, Integer> stealAVLTree;
-	private IRBTree<Double,Integer> stealRBTree;
-	private IRBTree<Double,Integer> locksRBTree;
-	private Abb<Double,Integer> reboundsABBTree;
-	private Abb<Double,Integer> assistsABBTree;
-	
+	private IRBTree<Double, Integer> stealRBTree;
+	private IRBTree<Double, Integer> locksRBTree;
+	private Abb<Double, Integer> reboundsABBTree;
+	private Abb<Double, Integer> assistsABBTree;
+
 	private FileReader fr;
 	private BufferedReader br;
 	private FileWriter fw;
@@ -37,69 +37,57 @@ public class FIBA {
 
 	public FIBA() throws ClassNotFoundException, IOException {
 
-		reboundsAVLTree = new AVLTree<Double, Integer>(); 	
+		reboundsAVLTree = new AVLTree<Double, Integer>();
 		stealAVLTree = new AVLTree<Double, Integer>();
-		locksRBTree= new RBTree<Double,Integer>();
-		stealRBTree= new RBTree<Double,Integer>();
-		reboundsABBTree= new Abb<Double,Integer>();
-		assistsABBTree= new Abb<Double,Integer>();
-		
-//		deStealAVLTree();
-//		deStealRBTree();
+		locksRBTree = new RBTree<Double, Integer>();
+		stealRBTree = new RBTree<Double, Integer>();
+		reboundsABBTree = new Abb<Double, Integer>();
+		assistsABBTree = new Abb<Double, Integer>();
+
+		deStealAVLTree();
+		deStealRBTree();
 //		deReboundsAVLTree();
 //		deLocksRBTree();
 //		deAssistsABBTree();
 		deReboundsABBTree();
+//		deAssistsABBTree();
 //		playerAmount = reboundsAVLTree.getAmountNode();
 
 	}
-	
 
 	public IRBTree<Double, Integer> getRBLocksTree() {
 		return locksRBTree;
 	}
 
-
 	public void setRBLocksTree(IRBTree<Double, Integer> locksRBTree) {
 		this.locksRBTree = locksRBTree;
 	}
 
-
 	public void insertLocks(Double key, Integer value) {
 		locksRBTree.RBInsert(key, value);
 	}
-	
-	
-	
-	
-	
+
 	public IRBTree<Double, Integer> getStealRBTree() {
 		return stealRBTree;
 	}
-
 
 	public void setStealRBTree(IRBTree<Double, Integer> stealRBTree) {
 		this.stealRBTree = stealRBTree;
 	}
 
-
 	public void deleteStealAVL(double key) {
-		
-		Integer num=stealAVLTree.search(key, stealAVLTree.getRoot()).getValue();
+
+		Integer num = stealAVLTree.search(key, stealAVLTree.getRoot()).getValue();
 		stealAVLTree.remove(key, num, stealAVLTree.getRoot());
 	}
+
 	public void insertStealAVL(Double key, Integer value) {
 		stealAVLTree.insert(key, value);
 	}
-	
-	
-	
-	
+
 	public void deleteLocks(Double key) {
 		locksRBTree.RBDelete(key);
 	}
-	
-
 
 	public Player searchReboundsAVL(Double key) throws IOException {
 
@@ -107,15 +95,16 @@ public class FIBA {
 
 		return searchTxtPlayer(num + "");
 	}
+
 	public Player searchReboundsABB(Double key) throws IOException {
 
 		System.out.println(reboundsABBTree.searchAbb(key));
 //		System.out.println(reboundsABBTree.searchAbb(key).getDate());
 		Integer num = reboundsABBTree.searchAbb(key).getValue();
-		
 
 		return searchTxtPlayer(num + "");
 	}
+
 	public Player searchAssistsABB(Double key) throws IOException {
 
 		Integer num = assistsABBTree.searchAbb(key).getValue();
@@ -130,16 +119,17 @@ public class FIBA {
 //		System.out.println(num +" NUM");
 		return searchTxtPlayer(num + "");
 	}
-	
+
 	public Player searchLocksRB(Double key) throws IOException {
 
-		Integer num = locksRBTree.RBSearch( locksRBTree.getRoot(),key).getValue();
+		Integer num = locksRBTree.RBSearch(locksRBTree.getRoot(), key).getValue();
 
 		return searchTxtPlayer(num + "");
 	}
+
 	public Player searchStealRB(Double key) throws IOException {
 
-		Integer num = stealRBTree.RBSearch( stealRBTree.getRoot(),key).getValue();
+		Integer num = stealRBTree.RBSearch(stealRBTree.getRoot(), key).getValue();
 
 		return searchTxtPlayer(num + "");
 	}
@@ -155,7 +145,7 @@ public class FIBA {
 	public Player searchTxtPlayer(String value) throws IOException {
 
 		File f = new File("PlayersData/" + value + ".txt/");
-		System.out.println("VALUE TXT "+value);
+		System.out.println("VALUE TXT " + value);
 		fr = new FileReader(f);
 		br = new BufferedReader(fr);
 
@@ -171,14 +161,14 @@ public class FIBA {
 
 	public void addNewPlayer(Player newPlayer) throws IOException {
 
-		//reboundsAVLTree.amountNodes(reboundsAVLTree.getRoot());
-	//	int index = reboundsAVLTree.getAmountNode() + 1;
+		// reboundsAVLTree.amountNodes(reboundsAVLTree.getRoot());
+		// int index = reboundsAVLTree.getAmountNode() + 1;
 		int index = locksRBTree.getAmountNodes() - 1;
-		//reboundsAVLTree.insert(newPlayer.getRebounds(), index);
-		//stealAVLTree.insert(newPlayer.getSteal(), index);
+		// reboundsAVLTree.insert(newPlayer.getRebounds(), index);
+		// stealAVLTree.insert(newPlayer.getSteal(), index);
 		locksRBTree.RBInsert(newPlayer.getLocks(), index);
-		
-		//writeNewPlayer(newPlayer, index);
+
+		// writeNewPlayer(newPlayer, index);
 
 	}
 
@@ -197,141 +187,129 @@ public class FIBA {
 	public long executionTime(long startTime, long endTime) {
 		return endTime - startTime;
 	}
-	
+
 	public void cargarRebotes() throws IOException {
-		
-		
-		
+
 		for (int i = 0; i < 199999; i++) {
-			File actual = new File("PlayersData/"+i+".txt/");
-			System.out.println(actual.getName()+ " Nombre file");
-			fr= new FileReader(actual);
-			br=new BufferedReader(fr);
-			String line= br.readLine();
-			String [] info= line.split(",");
+			File actual = new File("PlayersData/" + i + ".txt/");
+			System.out.println(actual.getName() + " Nombre file");
+			fr = new FileReader(actual);
+			br = new BufferedReader(fr);
+			String line = br.readLine();
+			String[] info = line.split(",");
 //			System.out.println(info[6]+" VALOR STEAL");
-			double d=Double.parseDouble(info[5]);
+			double d = Double.parseDouble(info[5]);
 //			System.out.println(d);
 //			System.out.println(i);
 //			System.out.println(stealRBTree.getRoot().getKey());
-			assistsABBTree.addAbb(d, (Integer)i);
+			assistsABBTree.addAbb(d, (Integer) i);
 //			Integer d=Integer.parseInt(info[3]);
 //			pointsABBTree.addAbb(d, (Integer)1);
-			
-			
+
 		}
 		System.out.println("listo");
 		serializar();
-		
-		
+
 	}
+
 	public void serializar() throws IOException {
-		
-		FileOutputStream fout=new FileOutputStream("ArbolesSerializados/assistsABBTree.dat");
-		ObjectOutputStream obj= new ObjectOutputStream(fout);
+
+		FileOutputStream fout = new FileOutputStream("ArbolesSerializados/assistsABBTree.dat");
+		ObjectOutputStream obj = new ObjectOutputStream(fout);
 		obj.writeObject(assistsABBTree.getRoot());
-		
+
 		obj.close();
 		fout.close();
-		
+
 	}
+
 	public void deStealAVLTree() throws IOException, ClassNotFoundException {
-		FileInputStream fi= new FileInputStream("ArbolesSerializados/stealAVLTree.dat");
-		ObjectInputStream obj= new ObjectInputStream(fi);
-		
-		AVLNode<Double, Integer> newRoot=(AVLNode<Double, Integer>)obj.readObject();
-		
+		FileInputStream fi = new FileInputStream("ArbolesSerializados/stealAVLTree.dat");
+		ObjectInputStream obj = new ObjectInputStream(fi);
+
+		AVLNode<Double, Integer> newRoot = (AVLNode<Double, Integer>) obj.readObject();
+
 		stealAVLTree.setRoot(newRoot);
-		
+
 		obj.close();
 		fi.close();
-	
-		
 
 	}
+
 	public void deStealRBTree() throws IOException, ClassNotFoundException {
-		FileInputStream fi= new FileInputStream("ArbolesSerializados/stealRBTree.dat");
-		ObjectInputStream obj= new ObjectInputStream(fi);
-		
-		RBNode<Double, Integer> newRoot=(RBNode<Double, Integer>)obj.readObject();
-		
+		FileInputStream fi = new FileInputStream("ArbolesSerializados/stealRBTree.dat");
+		ObjectInputStream obj = new ObjectInputStream(fi);
+
+		RBNode<Double, Integer> newRoot = (RBNode<Double, Integer>) obj.readObject();
+
 		stealRBTree.setRoot(newRoot);
-		
+
 		obj.close();
 		fi.close();
-	
-		
 
 	}
+
 	public void deReboundsAVLTree() throws IOException, ClassNotFoundException {
-		FileInputStream fi= new FileInputStream("ArbolesSerializados/reboundsAVLTree.dat");
-		ObjectInputStream obj= new ObjectInputStream(fi);
-		
-		AVLNode<Double, Integer> newRoot=(AVLNode<Double, Integer>)obj.readObject();
-		
+		FileInputStream fi = new FileInputStream("ArbolesSerializados/reboundsAVLTree.dat");
+		ObjectInputStream obj = new ObjectInputStream(fi);
+
+		AVLNode<Double, Integer> newRoot = (AVLNode<Double, Integer>) obj.readObject();
+
 		reboundsAVLTree.setRoot(newRoot);
-		
+
 		obj.close();
 		fi.close();
-	
-		
 
 	}
+
 	public void deLocksRBTree() throws IOException, ClassNotFoundException {
-		FileInputStream fi= new FileInputStream("ArbolesSerializados/locksRBTree.dat");
-		ObjectInputStream obj= new ObjectInputStream(fi);
-		
-		RBNode<Double, Integer> newRoot=(RBNode<Double, Integer>)obj.readObject();
-		
+		FileInputStream fi = new FileInputStream("ArbolesSerializados/locksRBTree.dat");
+		ObjectInputStream obj = new ObjectInputStream(fi);
+
+		RBNode<Double, Integer> newRoot = (RBNode<Double, Integer>) obj.readObject();
+
 		locksRBTree.setRoot(newRoot);
-		
+
 		obj.close();
 		fi.close();
-	
-		
 
 	}
+
 	public void deReboundsABBTree() throws IOException, ClassNotFoundException {
-		FileInputStream fi= new FileInputStream("ArbolesSerializados/reboundsABBTree.dat");
-		ObjectInputStream obj= new ObjectInputStream(fi);
-		
-		AbbNode<Double, Integer> newRoot=(AbbNode<Double, Integer>)obj.readObject();
-		
+		FileInputStream fi = new FileInputStream("ArbolesSerializados/reboundsABBTree.dat");
+		ObjectInputStream obj = new ObjectInputStream(fi);
+
+		AbbNode<Double, Integer> newRoot = (AbbNode<Double, Integer>) obj.readObject();
+
 		reboundsABBTree.setRoot(newRoot);
-		
+
 		obj.close();
 		fi.close();
-	
-		
 
 	}
+
 	public void deAssistsABBTree() throws IOException, ClassNotFoundException {
-		FileInputStream fi= new FileInputStream("ArbolesSerializados/assistsABBTree.dat");
-		ObjectInputStream obj= new ObjectInputStream(fi);
-		
-		AbbNode<Double, Integer> newRoot=(AbbNode<Double, Integer>)obj.readObject();
-		
+		FileInputStream fi = new FileInputStream("ArbolesSerializados/assistsABBTree.dat");
+		ObjectInputStream obj = new ObjectInputStream(fi);
+
+		AbbNode<Double, Integer> newRoot = (AbbNode<Double, Integer>) obj.readObject();
+
 		assistsABBTree.setRoot(newRoot);
-		
+
 		obj.close();
 		fi.close();
-	
-		
 
 	}
-	
+
 	public static void main(String[] args) throws IOException, ClassNotFoundException {
-		
+
 //		FIBA fi= new FIBA();
 //		fi.cargarRebotes();
 //		fi.getStealRBTree().RBInsert(35.75075961202617, 1);
 //		System.out.println(fi.getStealRBTree().getRoot().getKey());
 //		fi.insertPoints(100, value);
 //		fi.searchPointsRB(10.2);
-		
-		
-	
+
 	}
-	
 
 }

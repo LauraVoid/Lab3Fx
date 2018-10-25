@@ -13,7 +13,7 @@ public class AVLTree<Q, K> implements IAVLTree<Q, K> {
 
 	public AVLTree() {
 		super();
-		amountNode=-1;
+		amountNode = -1;
 		this.root = null;
 
 	}
@@ -29,6 +29,7 @@ public class AVLTree<Q, K> implements IAVLTree<Q, K> {
 	public void setRoot(AVLNode<Q, K> root) {
 		this.root = root;
 	}
+
 	@Override
 	public int getAmountNode() {
 		return amountNode;
@@ -50,14 +51,14 @@ public class AVLTree<Q, K> implements IAVLTree<Q, K> {
 //			amountNodes(root);
 //			int index=getAmountNode();
 			amountNode++;
-								
-			return new AVLNode<Q, K> (key,value);
-					
+
+			return new AVLNode<Q, K>(key, value);
+
 		}
-		AVLNode<Q, K> element= new AVLNode<Q, K>(key,value);
+		AVLNode<Q, K> element = new AVLNode<Q, K>(key, value);
 
 		if (element.compareTo(ele) < 0) {
-			ele.setLeft(add(key,value, ele.getLeft()));
+			ele.setLeft(add(key, value, ele.getLeft()));
 		} else if (element.compareTo(ele) > 0) {
 			ele.setRight(add(key, value, ele.getRight()));
 		}
@@ -118,7 +119,7 @@ public class AVLTree<Q, K> implements IAVLTree<Q, K> {
 	@Override
 	public AVLNode<Q, K> remove(Q key, K value, AVLNode<Q, K> root) {
 
-		AVLNode<Q, K> element= new AVLNode<Q, K> (key,value);
+		AVLNode<Q, K> element = new AVLNode<Q, K>(key, value);
 		if (root == null) {
 			return root;
 		}
@@ -127,14 +128,14 @@ public class AVLTree<Q, K> implements IAVLTree<Q, K> {
 		}
 
 		else if (element.compareTo(root) > 0) {
-			  System.out.println(root.getKey()+" here");
+			System.out.println(root.getKey() + " here");
 			root.setRight(remove(key, value, root.getRight()));
 		}
 
 		else {
 //			System.out.println(root.getKey()+ " ROOT KEY");
 			if ((root.getLeft() == null) || (root.getRight() == null)) {
-				
+
 				AVLNode<Q, K> temp = null;
 				if (temp == root.getLeft())
 					temp = root.getRight();
@@ -149,18 +150,18 @@ public class AVLTree<Q, K> implements IAVLTree<Q, K> {
 			} else {
 
 				AVLNode<Q, K> temp = minValueNode(root.getRight());
-				
+
 				root = temp;
 
-				root.setRight(remove(temp.getKey(),temp.getValue(), root.getRight()));
+				root.setRight(remove(temp.getKey(), temp.getValue(), root.getRight()));
 			}
 
 		}
 		if (root == null) {
-			
+
 			return root;
 		}
-		
+
 		root.setHeight(max(treeHeight(root.getLeft()), treeHeight(root.getRight())) + 1);
 		int balance = getBalance(root);
 
@@ -199,12 +200,12 @@ public class AVLTree<Q, K> implements IAVLTree<Q, K> {
 	public AVLNode<Q, K> search(Q element, AVLNode<Q, K> root) {
 
 //		System.out.println(root.getKey()+ "VALUE SEARCH");
-		if (((Double) root.getKey()).equals((Double)element)) {
+		if (((Double) root.getKey()).equals((Double) element)) {
 //			System.out.println(root.getValue()+ " found txt");
 			return root;
 		}
 
-		else if ((Double)element < (Double) root.getKey()) {
+		else if ((Double) element < (Double) root.getKey()) {
 			return search(element, root.getLeft());
 		} else
 			return search(element, root.getRight());
@@ -297,7 +298,7 @@ public class AVLTree<Q, K> implements IAVLTree<Q, K> {
 		if (node != null) {
 
 			amountNode++;
-			System.out.println(amountNode +" AMOUNT ");
+			System.out.println(amountNode + " AMOUNT ");
 			amountNodes(node.getLeft());
 			amountNodes(node.getRight());
 
@@ -315,10 +316,9 @@ public class AVLTree<Q, K> implements IAVLTree<Q, K> {
 
 		return val;
 	}
-	
+
 //	public void deserializar() throws IOException, ClassNotFoundException {
-		
-		
+
 //	}
 
 }

@@ -72,7 +72,7 @@ public class Abb<T extends Comparable<? super T>,V> implements IAbb<T,V> {
 	@Override
 	public AbbNode<T,V> searchAbb(T a) {
 		AbbNode<T,V> aux = new AbbNode<T,V>(a,null);
-		System.out.println(a);
+		
 		
 		if(root != null) {
 			if((double)root.getDate() == (double)aux.getDate()) {
@@ -82,6 +82,7 @@ public class Abb<T extends Comparable<? super T>,V> implements IAbb<T,V> {
 				return root.searchElement(a);
 			}
 		}else {
+			System.out.println("xxx");
 			return null;
 		}
 	}

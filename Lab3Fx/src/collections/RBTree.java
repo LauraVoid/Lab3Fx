@@ -4,374 +4,357 @@ import collections.IRBTree;
 import collections.RBNode;
 import collections.RBTree;
 
-public class RBTree<K,V> implements IRBTree<K,V> {
-	
-	private RBNode<K,V> root;
-	private RBNode<K,V> nil;
+public class RBTree<K, V> implements IRBTree<K, V> {
+
+	private RBNode<K, V> root;
+	private RBNode<K, V> nil;
 	private int amountNodes;
-    public RBTree() {
-		nil=new RBNode<K,V>(null, null,RBNode.BLACK);
-		root=nil;
+
+	public RBTree() {
+		nil = new RBNode<K, V>(null, null, RBNode.BLACK);
+		root = nil;
 	}
-    
-    
-    @Override
+
+	@Override
 	public RBNode<K, V> getRoot() {
 		return root;
 	}
 
-
-   @Override
+	@Override
 	public void setRoot(RBNode<K, V> root) {
 		this.root = root;
 	}
-   
 
-    
-    public RBNode<K, V> getNil() {
-	return nil;
-}
+	public RBNode<K, V> getNil() {
+		return nil;
+	}
 
+	public void setNil(RBNode<K, V> nil) {
+		this.nil = nil;
+	}
 
-public void setNil(RBNode<K, V> nil) {
-	this.nil = nil;
-}
+	@Override
+	public int getAmountNodes() {
+		return amountNodes;
+	}
 
-    @Override
-    public int getAmountNodes() {
-	return amountNodes;
-    }
+	public void setAmountNodes(int amountNodes) {
+		this.amountNodes = amountNodes;
+	}
 
-
-public void setAmountNodes(int amountNodes) {
-	this.amountNodes = amountNodes;
-}
-
-
-	public void leftRotate(RBNode<K,V> x) {
-    	RBNode<K,V> y = x.getRight();
+	public void leftRotate(RBNode<K, V> x) {
+		RBNode<K, V> y = x.getRight();
 		x.setRight(y.getLeft());
 		y.getLeft().setFather(x);
 		y.setFather(x.getFather());
-		if(x.getFather()==nil) {
+		if (x.getFather() == nil) {
 			setRoot(y);
-		}
-		else {
-			if(x==x.getFather().getLeft()) {
+		} else {
+			if (x == x.getFather().getLeft()) {
 				x.getFather().setLeft(y);
-				
-			}
-			else {
+
+			} else {
 				x.getFather().setRight(y);
 			}
 		}
-		
+
 		y.setLeft(x);
 		x.setFather(y);
-    }
-    public void rightRotate(RBNode<K,V> x) {
-    	RBNode<K,V> y = x.getLeft();
+	}
+
+	public void rightRotate(RBNode<K, V> x) {
+		RBNode<K, V> y = x.getLeft();
 		x.setLeft(y.getRight());
 		y.getRight().setFather(x);
 		y.setFather(x.getFather());
-		if(x.getFather()==nil) {
+		if (x.getFather() == nil) {
 			setRoot(y);
-		}
-		else {
-			if(x==x.getFather().getRight()) {
+		} else {
+			if (x == x.getFather().getRight()) {
 				x.getFather().setRight(y);
-				
-			}
-			else {
+
+			} else {
 				x.getFather().setLeft(y);
 			}
 		}
-		
+
 		y.setRight(x);
 		x.setFather(y);
-    }
-	public void leftRotatemio(RBNode<K,V> x) {
-		 
-		RBNode<K,V> y = x.getRight();
+	}
+
+	public void leftRotatemio(RBNode<K, V> x) {
+
+		RBNode<K, V> y = x.getRight();
 		x.setRight(y.getLeft());
-		if(y.getLeft()!=nil) {
+		if (y.getLeft() != nil) {
 			y.getLeft().setFather(x);
 		}
 		y.setFather(x.getFather());
-		if(x.getFather()==nil) {
+		if (x.getFather() == nil) {
 			setRoot(y);
-		}else if(x==x.getFather().getLeft()) {
+		} else if (x == x.getFather().getLeft()) {
 			x.getFather().setLeft(y);
-		}else {
+		} else {
 			x.getFather().setRight(y);
 		}
 		y.setLeft(x);
 		x.setFather(y);
 	}
-	
-	public void rightRotatemio(RBNode<K,V> y) {
-		RBNode<K,V> x = y.getLeft();
+
+	public void rightRotatemio(RBNode<K, V> y) {
+		RBNode<K, V> x = y.getLeft();
 		y.setLeft(x.getRight());//
-		if(x.getRight()!=nil) {
+		if (x.getRight() != nil) {
 			x.getRight().setFather(y);
 		}
 		x.setFather(y.getFather());
-		if(y.getFather()==nil) {
+		if (y.getFather() == nil) {
 			setRoot(x);
-		}else if(y==y.getFather().getRight()) {
+		} else if (y == y.getFather().getRight()) {
 			y.getFather().setRight(x);
-		}else {
+		} else {
 			y.getFather().setLeft(x);
 		}
 		x.setRight(y);
 		y.setFather(x);
 	}
-	public RBNode<K,V> RBSearch(RBNode<K,V> searched, K k) {
-		
-		if((searched==nil)||((double)k==(double)searched.getKey())){
-		
+
+	public RBNode<K, V> RBSearch(RBNode<K, V> searched, K k)   {
+
+		if ((searched == nil) || ((double) k == (double) searched.getKey())) {
+
 			return searched;
-		}if((double)k<(double)searched.getKey()) {
-			return RBSearch(searched.getLeft(),k);
 		}
-		else return RBSearch(searched.getRight(),k);
-		}
-		
-	
-	public RBNode<K,V> RBMaximum(RBNode<K,V> maximum) {
-		while(maximum.getRight()!=nil) {
-			maximum=maximum.getRight();
+		if ((double) k < (double) searched.getKey()) {
+			return RBSearch(searched.getLeft(), k);
+		} else
+			return RBSearch(searched.getRight(), k);
+	}
+
+	public RBNode<K, V> RBMaximum(RBNode<K, V> maximum) {
+		while (maximum.getRight() != nil) {
+			maximum = maximum.getRight();
 		}
 		return maximum;
 	}
-	
-	public RBNode<K,V> RBMinimum(RBNode<K,V> minimum) {
-		while(minimum.getLeft()!=nil) {
-			minimum=minimum.getLeft();
+
+	public RBNode<K, V> RBMinimum(RBNode<K, V> minimum) {
+		while (minimum.getLeft() != nil) {
+			minimum = minimum.getLeft();
 		}
 		return minimum;
 	}
-	public RBNode<K,V> RBSuccessor(RBNode<K,V> successor){
-		RBNode<K,V> y=nil;
-		if(successor.getRight()!=nil) {
+
+	public RBNode<K, V> RBSuccessor(RBNode<K, V> successor) {
+		RBNode<K, V> y = nil;
+		if (successor.getRight() != nil) {
 			return RBMinimum(successor.getRight());
-			
+
 		}
-		y=successor.getFather();
-		
-		while((y!=nil)&&(successor==y.getRight())) {
-			successor=y;
-			y=y.getFather();
-		}
-		return y;
-	}
-	
-        public RBNode<K,V> RBPredecessor(RBNode<K,V> predecessor){
-		
-		if(predecessor.getLeft()!=nil) {
-			return RBMaximum(predecessor.getLeft());
-			
-		}
-		RBNode<K,V> y=predecessor.getFather();
-		while((y!=nil)&&(predecessor==y.getLeft())) {
-			predecessor=y;
-			y=y.getFather();
+		y = successor.getFather();
+
+		while ((y != nil) && (successor == y.getRight())) {
+			successor = y;
+			y = y.getFather();
 		}
 		return y;
 	}
 
-    	public void RBInsert(K key, V value) {
-    	RBNode<K,V> newNode= new RBNode<K,V>(key, value, RBNode.RED);
-		RBNode<K,V> y=nil;
-		RBNode<K,V> x= root;
-		while(x!=nil) {
-			y=x;
-			if(newNode.compareTo(x)<0) {
-				x=x.getLeft();
-				
-			}else x=x.getRight();
+	public RBNode<K, V> RBPredecessor(RBNode<K, V> predecessor) {
+
+		if (predecessor.getLeft() != nil) {
+			return RBMaximum(predecessor.getLeft());
+
 		}
-		
+		RBNode<K, V> y = predecessor.getFather();
+		while ((y != nil) && (predecessor == y.getLeft())) {
+			predecessor = y;
+			y = y.getFather();
+		}
+		return y;
+	}
+
+	public void RBInsert(K key, V value) {
+		RBNode<K, V> newNode = new RBNode<K, V>(key, value, RBNode.RED);
+		RBNode<K, V> y = nil;
+		RBNode<K, V> x = root;
+		while (x != nil) {
+			y = x;
+			if (newNode.compareTo(x) < 0) {
+				x = x.getLeft();
+
+			} else
+				x = x.getRight();
+		}
+
 		newNode.setFather(y);
-		if(y==nil) {
+		if (y == nil) {
 			setRoot(newNode);
-			
-			
-		}else if(newNode.compareTo(y)<0) {
+
+		} else if (newNode.compareTo(y) < 0) {
 			y.setLeft(newNode);
-			
-		}else y.setRight(newNode);
+
+		} else
+			y.setRight(newNode);
 		newNode.setLeft(nil);
 		newNode.setRight(nil);
 		newNode.setColor(RBNode.RED);
 		amountNodes++;
 		RBInsertFixUp(newNode);
-		
-		}
-		
-	
-    public void RBInsertFixUp(RBNode<K,V> newNode ) {
-		while(newNode.getFather().getColor()==RBNode.RED) {
-			if(newNode.getFather()==newNode.getFather().getFather().getLeft()) {
-				RBNode<K,V> y=newNode.getFather().getFather().getRight();
-				if(y.getColor()==RBNode.RED) {
-				newNode.getFather().setColor(RBNode.BLACK);
-				y.setColor(RBNode.BLACK);
-				newNode.getFather().getFather().setColor(RBNode.RED);
-				newNode=newNode.getFather().getFather();
-			}
-				else 
-					{
-					if(newNode==newNode.getFather().getRight()) {
-						newNode=newNode.getFather();
+
+	}
+
+	public void RBInsertFixUp(RBNode<K, V> newNode) {
+		while (newNode.getFather().getColor() == RBNode.RED) {
+			if (newNode.getFather() == newNode.getFather().getFather().getLeft()) {
+				RBNode<K, V> y = newNode.getFather().getFather().getRight();
+				if (y.getColor() == RBNode.RED) {
+					newNode.getFather().setColor(RBNode.BLACK);
+					y.setColor(RBNode.BLACK);
+					newNode.getFather().getFather().setColor(RBNode.RED);
+					newNode = newNode.getFather().getFather();
+				} else {
+					if (newNode == newNode.getFather().getRight()) {
+						newNode = newNode.getFather();
 						leftRotate(newNode);
 					}
-				newNode.getFather().setColor(RBNode.BLACK);
-				newNode.getFather().getFather().setColor(RBNode.RED);
-				rightRotate(newNode.getFather().getFather());
+					newNode.getFather().setColor(RBNode.BLACK);
+					newNode.getFather().getFather().setColor(RBNode.RED);
+					rightRotate(newNode.getFather().getFather());
 				}
-				
-			}
-			else {
-				RBNode<K,V> y=newNode.getFather().getFather().getLeft();
-				if(y.getColor()==RBNode.RED) {
-				newNode.getFather().setColor(RBNode.BLACK);
-				y.setColor(RBNode.BLACK);
-				newNode.getFather().getFather().setColor(RBNode.RED);
-				newNode=newNode.getFather().getFather();
-			}
-				else 
-					{
-					if(newNode==newNode.getFather().getLeft()) {
-					newNode=newNode.getFather();
-					rightRotate(newNode);
-					
+
+			} else {
+				RBNode<K, V> y = newNode.getFather().getFather().getLeft();
+				if (y.getColor() == RBNode.RED) {
+					newNode.getFather().setColor(RBNode.BLACK);
+					y.setColor(RBNode.BLACK);
+					newNode.getFather().getFather().setColor(RBNode.RED);
+					newNode = newNode.getFather().getFather();
+				} else {
+					if (newNode == newNode.getFather().getLeft()) {
+						newNode = newNode.getFather();
+						rightRotate(newNode);
+
+					}
+					newNode.getFather().setColor(RBNode.BLACK);
+					newNode.getFather().getFather().setColor(RBNode.RED);
+					leftRotate(newNode.getFather().getFather());
 				}
-				newNode.getFather().setColor(RBNode.BLACK);
-				newNode.getFather().getFather().setColor(RBNode.RED);
-				leftRotate(newNode.getFather().getFather());
-			}
 			}
 		}
 		root.setColor(RBNode.BLACK);
 	}
-    
-    @Override
-    public RBNode<K,V> RBDelete(K key ) { 
-    	RBNode<K,V> deleted= RBSearch(root, key);
-    	RBNode<K,V> x = nil; 
-    	RBNode<K,V> y = nil; 
-		if((deleted.getLeft()==nil)||deleted.getRight()==nil) {
-			y = deleted; 
+
+	@Override
+	public RBNode<K, V> RBDelete(K key) {
+		RBNode<K, V> deleted = RBSearch(root, key);
+		RBNode<K, V> x = nil;
+		RBNode<K, V> y = nil;
+		if ((deleted.getLeft() == nil) || deleted.getRight() == nil) {
+			y = deleted;
+		} else {
+			y = RBPredecessor(deleted);
 		}
-		else
-			{
-			y= RBPredecessor(deleted);
-			}
-		if(y.getLeft()!=nil) {
-			x=y.getLeft();	
-		}else {
-			x=y.getRight();
+		if (y.getLeft() != nil) {
+			x = y.getLeft();
+		} else {
+			x = y.getRight();
 		}
 		x.setFather(y.getFather());
-		if(y.getFather()==nil) {
+		if (y.getFather() == nil) {
 			setRoot(x);
-		}else {
-			if(y==y.getFather().getLeft()) {
-			y.getFather().setLeft(x);
-			
-		    }else {
-			y.getFather().setRight(x);
+		} else {
+			if (y == y.getFather().getLeft()) {
+				y.getFather().setLeft(x);
+
+			} else {
+				y.getFather().setRight(x);
+			}
 		}
-		}
-		if(y!=deleted) {
+		if (y != deleted) {
 			deleted.setKey(y.getKey());
 			deleted.setValue(y.getValue());
-			}
-		
-		if(y.getColor()==RBNode.BLACK) RBDeleteFixUp(x);
+		}
+
+		if (y.getColor() == RBNode.BLACK)
+			RBDeleteFixUp(x);
 		return y;
 	}
-    public void RBDeleteFixUp(RBNode<K,V> x ) {
-		while(x!=root && x.getColor()==RBNode.BLACK) {
-			
-			//Rama Izquierda
-			if(x==x.getFather().getLeft()) {
-				RBNode<K,V> w= x.getFather().getRight();
-				if(w.getColor()==RBNode.RED) {
+
+	public void RBDeleteFixUp(RBNode<K, V> x) {
+		while (x != root && x.getColor() == RBNode.BLACK) {
+
+			// Rama Izquierda
+			if (x == x.getFather().getLeft()) {
+				RBNode<K, V> w = x.getFather().getRight();
+				if (w.getColor() == RBNode.RED) {
 					w.setColor(RBNode.BLACK);
 					w.getFather().setColor(RBNode.RED);
 					leftRotate(x.getFather());
-					w=x.getFather().getRight();
+					w = x.getFather().getRight();
 				}
-	
-				if(w.getLeft().getColor()==RBNode.BLACK && w.getRight().getColor()==RBNode.BLACK) {
+
+				if (w.getLeft().getColor() == RBNode.BLACK && w.getRight().getColor() == RBNode.BLACK) {
 					w.setColor(RBNode.RED);
-					x=x.getFather();
-				}
-				else {
-					if( w.getRight().getColor()==RBNode.BLACK ) {
+					x = x.getFather();
+				} else {
+					if (w.getRight().getColor() == RBNode.BLACK) {
 						w.getLeft().setColor(RBNode.BLACK);
 						w.setColor(RBNode.RED);
 						rightRotate(w);
-						w=x.getFather().getRight();
-				}
+						w = x.getFather().getRight();
+					}
 					w.setColor(x.getFather().getColor());
 					x.getFather().setColor(RBNode.BLACK);
 					w.getRight().setColor(RBNode.BLACK);
 					leftRotate(x.getFather());
-					x=root;
+					x = root;
 				}
-				
-					
-			}
-			else if(x==x.getFather().getRight()){
-				
-				RBNode<K,V> w= x.getFather().getLeft();
-				if(w.getColor()==RBNode.RED) {
+
+			} else if (x == x.getFather().getRight()) {
+
+				RBNode<K, V> w = x.getFather().getLeft();
+				if (w.getColor() == RBNode.RED) {
 					w.setColor(RBNode.BLACK);
 					w.getFather().setColor(RBNode.RED);
 					rightRotate(x.getFather());
-					w=x.getFather().getLeft();
+					w = x.getFather().getLeft();
 				}
-	
-				if(w.getRight().getColor()==RBNode.BLACK && w.getLeft().getColor()==RBNode.BLACK) {
+
+				if (w.getRight().getColor() == RBNode.BLACK && w.getLeft().getColor() == RBNode.BLACK) {
 					w.setColor(RBNode.RED);
-					x=x.getFather();
-				}
-				else  {
-					if( w.getLeft().getColor()==RBNode.BLACK ) {
+					x = x.getFather();
+				} else {
+					if (w.getLeft().getColor() == RBNode.BLACK) {
 						w.getRight().setColor(RBNode.BLACK);
 						w.setColor(RBNode.RED);
 						leftRotate(w);
-						w=x.getFather().getLeft();
-				}
+						w = x.getFather().getLeft();
+					}
 					w.setColor(x.getFather().getColor());
 					x.getFather().setColor(RBNode.BLACK);
 					w.getLeft().setColor(RBNode.BLACK);
 					rightRotate(x.getFather());
-					x=root;
+					x = root;
 				}
-				
-					
-			}
-				
-			}
-		x.setColor(RBNode.BLACK);
-		}
-	
 
-    
-    public void preorder(RBNode<K,V> root) {
-    	if(root!=nil) {
-    		System.out.println(root.getKey()+" "+root.getColor());
-    		preorder(root.getLeft());
-    		preorder(root.getRight());
-    	}
-    }
+			}
+
+		}
+		x.setColor(RBNode.BLACK);
+	}
+
+	public void preorder(RBNode<K, V> root) {
+		if (root != nil) {
+			System.out.println(root.getKey() + " " + root.getColor());
+			preorder(root.getLeft());
+			preorder(root.getRight());
+		}
+	}
+
 	public static void main(String[] args) {
-		IRBTree<Double,Integer> rb = new RBTree<Double,Integer>();
-		rb.RBInsert(35.75075961202617,9);
+		IRBTree<Double, Integer> rb = new RBTree<Double, Integer>();
+		rb.RBInsert(35.75075961202617, 9);
 //		rb.RBInsert(7.0, "player2");
 //		rb.RBInsert(12.0, "player3");
 //		rb.RBInsert(6.0, "player4");
@@ -390,8 +373,8 @@ public void setAmountNodes(int amountNodes) {
 //		rb.preorder(rb.getRoot());
 //		System.out.println(rb.getAmountNodes());
 //	    System.out.println(rb.RBSearch(rb.getRoot(),13.0).getValue());
-        System.out.println(rb.getRoot().getKey());
-        System.out.println(rb.getRoot().getValue());
+		System.out.println(rb.getRoot().getKey());
+		System.out.println(rb.getRoot().getValue());
 //		System.out.println(rb.getRoot().getLeft().getKey());
 //		System.out.println(rb.getRoot().getRight().getKey());
 //		System.out.println(rb.getRoot().getLeft().getLeft().getKey());
@@ -424,11 +407,7 @@ public void setAmountNodes(int amountNodes) {
 //		System.out.println(rb.getRoot().getLeft().getLeft().getColor());
 //	}	
 //	}
-	
-}
-
 
 	}
 
-
-
+}
