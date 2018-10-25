@@ -150,6 +150,11 @@ public class SampleController {
 		Double locks = Double.parseDouble(txtLocks.getText());
 
 		Player player = new Player(name, age, team, points, rebounds, assists, steal, locks);
+		try {
+			fiba.addNewPlayer(player);
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "El jugador no se ha agregar correctamente");
+		}
 
 	}
 
@@ -242,7 +247,10 @@ public class SampleController {
 		}
 		// ABB
 
-		String player = "Name " + found.getName() + " steal " + found.getSteal();
+
+		String player = "Nombre: " + found.getName() + " \n Edad: " + found.getEdad() + "\n Equipo: " + found.getTeam() + "\n Puntos:"
+				+ found.getPoints() + "\n Rebotes:" + found.getRebounds() + "\n Asistencias:" + found.getAssists() + "\n Robos:" + found.getSteal()
+				+ "\n Bloqueos: " + found.getLocks();
 		return player;
 
 	}
@@ -257,7 +265,10 @@ public class SampleController {
 		long end = System.nanoTime(); 
 		long total=fiba.executionTime(start, end);
 		labTimeValue.setText(total+" RB" );
-		String player = "Name " + found.getName() + " steal " + found.getSteal();
+
+		String player = "Nombre: " + found.getName() + " \n Edad: " + found.getEdad() + "\n Equipo: " + found.getTeam() + "\n Puntos:"
+				+ found.getPoints() + "\n Rebotes:" + found.getRebounds() + "\n Asistencias:" + found.getAssists() + "\n Robos:" + found.getSteal()
+				+ "\n Bloqueos: " + found.getLocks();
 		return player;
 
 	}
@@ -306,11 +317,12 @@ public class SampleController {
 			fiba.getRBLocksTree().RBDelete(eliminar);
 		}
 		else if(rdStealsDelete.isSelected()) {
-			//fiba.getStealAVLTree().remove(eliminar, value, root);
+			fiba.deleteStealAVL(eliminar);
 			fiba.getStealRBTree().RBDelete(eliminar);
 		}
 		else if(rdReboundsDelete.isSelected()) {
 			fiba.getReboundsABBTree().deleteAbb(eliminar);
+			fiba.deleteReboundsAVL(eliminar);
 		}
 		
 		

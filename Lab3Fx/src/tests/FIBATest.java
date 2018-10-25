@@ -77,23 +77,36 @@ class FIBATest {
 		assertEquals(fiba.getRBLocksTree().getRoot().getValue(),fiba.searchLocksRB(93.0));
 	}
 	
+	@Test
 	public void insertStealAVL() throws ClassNotFoundException, IOException {
 		setUp1();
 		
-		fiba.insertStealAVL(85.4, player1);
-		fiba.insertStealAVL(15.66, player2);
-		fiba.insertStealAVL(5.368, player3);
-		fiba.insertStealAVL(15.700, player4);
-		fiba.insertStealAVL(4.856, player5);
-		fiba.insertStealAVL(85.41, player6);
+		fiba.insertStealAVL(10.0, player1);
+		fiba.insertStealAVL(5.0, player2);
+		fiba.insertStealAVL(2.0, player3);
+		fiba.insertStealAVL(1.0, player4);
+		fiba.insertStealAVL(11.0, player5);
+		fiba.insertStealAVL(3.0, player6);
 		
-		assertEquals(, actual);
+		assertEquals(fiba.getStealAVLTree().getRoot().getValue(),player2);
 		
 	}
 	
 	
 	@Test
-	public void deleteStealAVL() {
+	public void deleteStealAVL() throws ClassNotFoundException, IOException {
+		setUp1();
+		
+		fiba.insertStealAVL(10.0, player1);
+		fiba.insertStealAVL(5.0, player2);
+		fiba.insertStealAVL(2.0, player3);
+		fiba.insertStealAVL(1.0, player4);
+		fiba.insertStealAVL(11.0, player5);
+		fiba.insertStealAVL(3.0, player6);
+		
+		Integer x= fiba.getStealAVLTree().search(10.0, fiba.getStealAVLTree().getRoot()).getValue();
+		
+		assertEquals(player1, x);
 		
 		
 		

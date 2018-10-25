@@ -1,9 +1,5 @@
 package collections;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.ObjectInputStream;
 
 //
 public class AVLTree<Q, K> implements IAVLTree<Q, K> {
@@ -117,19 +113,22 @@ public class AVLTree<Q, K> implements IAVLTree<Q, K> {
 	}
 
 	@Override
-	public AVLNode<Q, K> remove(Q key, K value, AVLNode<Q, K> root) {
-
-		AVLNode<Q, K> element = new AVLNode<Q, K>(key, value);
+	public AVLNode<Q, K> remove(Q key, AVLNode<Q, K> root) {
+		
+		
+		AVLNode<Q, K> ele=search(key, this.root);
+		AVLNode<Q, K> element = ele;
+		
 		if (root == null) {
 			return root;
 		}
 		if (element.compareTo(root) < 0) {
-			root.setLeft(remove(key, value, root.getLeft()));
+			root.setLeft(remove(key, root.getLeft()));
 		}
 
 		else if (element.compareTo(root) > 0) {
 			System.out.println(root.getKey() + " here");
-			root.setRight(remove(key, value, root.getRight()));
+			root.setRight(remove(key, root.getRight()));
 		}
 
 		else {
@@ -153,7 +152,7 @@ public class AVLTree<Q, K> implements IAVLTree<Q, K> {
 
 				root = temp;
 
-				root.setRight(remove(temp.getKey(), temp.getValue(), root.getRight()));
+				root.setRight(remove(temp.getKey(), root.getRight()));
 			}
 
 		}

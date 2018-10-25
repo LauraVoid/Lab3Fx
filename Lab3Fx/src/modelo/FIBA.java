@@ -33,7 +33,7 @@ public class FIBA {
 	private BufferedReader br;
 	private FileWriter fw;
 	private BufferedWriter bw;
-//	private int playerAmount;
+	private Integer playerAmount;
 
 	public FIBA() throws ClassNotFoundException, IOException {
 
@@ -51,10 +51,23 @@ public class FIBA {
 //		deAssistsABBTree();
 //		deReboundsABBTree();
 //		deAssistsABBTree();
-//		playerAmount = reboundsAVLTree.getAmountNode();
+		playerAmount = 199999;
 
 	}
 	
+
+
+	public int getPlayerAmount() {
+		return playerAmount;
+	}
+
+
+
+	public void setPlayerAmount(int playerAmount) {
+		this.playerAmount = playerAmount;
+	}
+
+
 
 	public IAVLTree<Double, Integer> getReboundsAVLTree() {
 		return reboundsAVLTree;
@@ -128,8 +141,13 @@ public class FIBA {
 
 	public void deleteStealAVL(double key) {
 
-		Integer num = stealAVLTree.search(key, stealAVLTree.getRoot()).getValue();
-		stealAVLTree.remove(key, num, stealAVLTree.getRoot());
+//		Integer num = stealAVLTree.search(key, stealAVLTree.getRoot()).getValue();
+		stealAVLTree.remove(key,stealAVLTree.getRoot());
+	}
+	public void deleteReboundsAVL(double key) {
+
+//		Integer num = stealAVLTree.search(key, stealAVLTree.getRoot()).getValue();
+		reboundsAVLTree.remove(key,stealAVLTree.getRoot());
 	}
 
 	public void insertStealAVL(Double key, Integer value) {
@@ -214,12 +232,19 @@ public class FIBA {
 
 		// reboundsAVLTree.amountNodes(reboundsAVLTree.getRoot());
 		// int index = reboundsAVLTree.getAmountNode() + 1;
-		int index = locksRBTree.getAmountNodes() - 1;
+//		int index = locksRBTree.getAmountNodes() - 1;
 		// reboundsAVLTree.insert(newPlayer.getRebounds(), index);
 		// stealAVLTree.insert(newPlayer.getSteal(), index);
-		locksRBTree.RBInsert(newPlayer.getLocks(), index);
+		 writeNewPlayer(newPlayer, playerAmount);
+		locksRBTree.RBInsert(newPlayer.getLocks(), playerAmount);
+		stealRBTree.RBInsert(newPlayer.getSteal(), playerAmount);
+		stealAVLTree.insert(newPlayer.getSteal(), playerAmount);
+		reboundsAVLTree.insert(newPlayer.getRebounds(), playerAmount);
+		reboundsABBTree.addAbb(newPlayer.getRebounds(), playerAmount);
+		assistsABBTree.addAbb(newPlayer.getAssists(), playerAmount);
+		
 
-		// writeNewPlayer(newPlayer, index);
+		
 
 	}
 
